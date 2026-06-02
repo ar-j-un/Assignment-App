@@ -47,10 +47,10 @@
 
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label for="phone" class="form-label">Phone Number</label>
-                            <input type="tel" class="form-control @error('phone') is-invalid @enderror" 
-                                   id="phone" name="phone" value="{{ old('phone') }}" placeholder="+1 234 567 8900">
-                            @error('phone') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                            <label for="phone_number" class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control @error('phone_number') is-invalid @enderror" 
+                                   id="phone_number" name="phone_number" value="{{ old('phone_number') }}" placeholder="+1 234 567 8900">
+                            @error('phone_number') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                         
                         <div class="col-md-6 mb-3">
