@@ -3,7 +3,10 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/admin', function () {
-    return view('admin.dashboard');
+    return view('portal.dashboard');
+});
+Route::get('/register', function () {
+    return view('portal.register');
 });
 
 // use App\Http\Controllers\Teams\TeamInvitationController;
