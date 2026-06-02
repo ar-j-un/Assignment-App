@@ -10,13 +10,7 @@
                 <li class="nav-item">
                     <a href="/" class="nav-link {{ Request::is('/') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-home"></i>
-                        <p>Home</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/register" class="nav-link {{ Request::is('register') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-user-plus"></i>
-                        <p>Create an Account</p>
+                        <p>Dashboard</p>
                     </a>
                 </li>
             </ul>
