@@ -1,13 +1,14 @@
 <?php
 
+use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/admin', function () {
+Route::get('/', function () {
     return view('portal.dashboard');
 });
-Route::get('/register', function () {
-    return view('portal.register');
-});
+
+Route::get('/register', [RegisterController::class, 'showRegistrationForm']);
+Route::post('/register', [RegisterController::class, 'register']);
 
 // use App\Http\Controllers\Teams\TeamInvitationController;
 // use App\Http\Middleware\EnsureTeamMembership;
