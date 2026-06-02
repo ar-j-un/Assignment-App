@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title', 'Welcome') | Laravel</title>
+    <title>@yield('title', 'Welcome') | Laravel App</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     
@@ -12,37 +12,9 @@
 <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
     <div class="app-wrapper">
         
-        <nav class="app-header navbar navbar-expand bg-body">
-            <div class="container-fluid">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" data-lte-toggle="sidebar" href="#" role="button">
-                            <i class="fas fa-bars"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+        @include('layouts.components.navbar')
 
-        <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
-            <div class="sidebar-brand">
-                <a href="/" class="brand-link">
-                    <span class="brand-text fw-light">Laravel App</span>
-                </a>
-            </div>
-            <div class="sidebar-wrapper">
-                <nav class="mt-2">
-                    <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu" data-accordion="false">
-                        <li class="nav-item">
-                            <a href="/register" class="nav-link">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>Create Account</p>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </aside>
+        @include('layouts.components.sidebar')
 
         <main class="app-main">
             <div class="app-content-header">
@@ -52,6 +24,13 @@
             </div>
             <div class="app-content">
                 <div class="container-fluid">
+                    @if(session('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <i class="fas fa-check-circle me-2"></i> {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+
                     @yield('content')
                 </div>
             </div>
