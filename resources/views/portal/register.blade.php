@@ -66,10 +66,10 @@
                             <label for="department" class="form-label">Department</label>
                             <select class="form-select @error('department') is-invalid @enderror" id="department" name="department" required>
                                 <option value="" disabled selected>Select Department...</option>
-                                <option value="IT" {{ old('department') == 'IT' ? 'selected' : '' }}>Information Technology</option>
-                                <option value="HR" {{ old('department') == 'HR' ? 'selected' : '' }}>Human Resources</option>
-                                <option value="Finance" {{ old('department') == 'Finance' ? 'selected' : '' }}>Finance</option>
-                                <option value="Marketing" {{ old('department') == 'Marketing' ? 'selected' : '' }}>Marketing</option>
+                                <option value="IT" {{ old('department') === 'IT' ? 'selected' : '' }}>Information Technology</option>
+                                <option value="HR" {{ old('department') === 'HR' ? 'selected' : '' }}>Human Resources</option>
+                                <option value="Finance" {{ old('department') === 'Finance' ? 'selected' : '' }}>Finance</option>
+                                <option value="Marketing" {{ old('department') === 'Marketing' ? 'selected' : '' }}>Marketing</option>
                             </select>
                             @error('department') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
