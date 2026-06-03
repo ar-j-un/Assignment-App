@@ -16,14 +16,14 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label for="name" class="form-label">Full Name</label>
+                            <label for="name" class="form-label">Full Name<span class="text-danger">*</span></label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror" 
                                    id="name" name="name" value="{{ old('name') }}" placeholder="Name" required>
                             @error('name') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                         
                         <div class="col-md-6 mb-3">
-                            <label for="email" class="form-label">Email ID</label>
+                            <label for="email" class="form-label">Email ID<span class="text-danger">*</span></label>
                             <input type="email" class="form-control @error('email') is-invalid @enderror" 
                                    id="email" name="email" value="{{ old('email') }}" placeholder="john@example.com" required>
                             @error('email') <div class="invalid-feedback">{{ $message }}</div> @enderror
@@ -32,14 +32,14 @@
 
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label for="password" class="form-label">Password</label>
+                            <label for="password" class="form-label">Password<span class="text-danger">*</span></label>
                             <input type="password" class="form-control @error('password') is-invalid @enderror" 
                                    id="password" name="password" required>
                             @error('password') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                         
                         <div class="col-md-6 mb-3">
-                            <label for="password_confirmation" class="form-label">Confirm Password</label>
+                            <label for="password_confirmation" class="form-label">Confirm Password<span class="text-danger">*</span></label>
                             <input type="password" class="form-control" 
                                    id="password_confirmation" name="password_confirmation" required>
                         </div>
@@ -64,7 +64,7 @@
 
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label for="department" class="form-label">Department</label>
+                            <label for="department" class="form-label">Department<span class="text-danger">*</span></label>
                             <select class="form-select @error('department') is-invalid @enderror" id="department" name="department" required>
                                 <option value="" disabled selected>Select Department...</option>
                                 <option value="IT" {{ old('department') === 'IT' ? 'selected' : '' }}>Information Technology</option>
@@ -76,7 +76,7 @@
                         </div>
                         
                         <div class="col-md-6 mb-3">
-                            <label for="designation" class="form-label">Designation</label>
+                            <label for="designation" class="form-label">Designation<span class="text-danger">*</span></label>
                             <input type="text" class="form-control @error('designation') is-invalid @enderror" 
                                    id="designation" name="designation" value="{{ old('designation') }}" placeholder="e.g., Senior Developer" required>
                             @error('designation') <div class="invalid-feedback">{{ $message }}</div> @enderror
