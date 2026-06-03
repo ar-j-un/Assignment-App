@@ -26,7 +26,7 @@ class LoginController extends Controller
 
             $request->session()->regenerate();
 
-            return redirect()->route('home')->with('success', 'Welcome back! You have successfully signed in.');
+            return redirect()->route('dashboard')->with('success', 'Welcome back! You have successfully signed in.');
         }
 
         return back()->withErrors([
