@@ -19,34 +19,38 @@
                         <tbody>
                             <tr>
                                 <th style="width: 35%;" class="ps-4 py-3 text-muted">Full Name</th>
-                                <td class="py-3 fw-bold text-dark">{{ Auth::user()->name }}</td>
+                                <td class="py-3 fw-bold text-dark">{{ $user->name }}</td>
                             </tr>
                             <tr>
                                 <th class="ps-4 py-3 text-muted">Email ID</th>
-                                <td class="py-3 text-dark">{{ Auth::user()->email }}</td>
+                                <td class="py-3 text-dark">{{ $user->email }}</td>
                             </tr>
                             <tr>
                                 <th class="ps-4 py-3 text-muted">Phone Number</th>
-                                <td class="py-3 text-dark">{{ Auth::user()->phone_number ?? 'Not Provided' }}</td>
+                                <td class="py-3 text-dark">{{ $user->phone ?? 'Not Provided' }}</td>
                             </tr>
                             <tr>
                                 <th class="ps-4 py-3 text-muted">Age</th>
-                                <td class="py-3 text-dark">{{ Auth::user()->age ?? 'Not Provided' }}</td>
+                                <td class="py-3 text-dark">{{ $user->age ?? 'Not Provided' }}</td>
                             </tr>
                             <tr>
                                 <th class="ps-4 py-3 text-muted">Department</th>
-                                <td class="py-3"><span class="badge bg-info-subtle text-info border border-info-subtle px-2.5 py-1.5 fs-7 fw-semibold">{{ Auth::user()->department }}</span></td>
+                                <td class="py-3">
+                                    <span class="badge bg-info-subtle text-info border border-info-subtle px-2.5 py-1.5 fs-7 fw-semibold">
+                                        {{ $user->department }}
+                                    </span>
+                                </td>
                             </tr>
                             <tr>
                                 <th class="ps-4 py-3 text-muted">Designation</th>
-                                <td class="py-3 text-secondary italic">{{ Auth::user()->designation }}</td>
+                                <td class="py-3 text-secondary italic">{{ $user->designation }}</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 
                 <div class="card-footer bg-light-subtle ps-4 text-muted small py-3">
-                    Account Created: {{ Auth::user()->created_at->format('F d, Y') }}
+                    Account Created: {{ $user->created_at->format('F d, Y') }}
                 </div>
             </div>
         </div>
