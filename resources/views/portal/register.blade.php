@@ -11,7 +11,7 @@
                 <h3 class="card-title">Employee Registration Form</h3>
             </div>
             
-            <form action="/register" method="POST">
+            <form action="{{ route('register.store') }}" method="POST">
                 @csrf 
                 <div class="card-body">
                     <div class="row">

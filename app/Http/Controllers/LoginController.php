@@ -12,7 +12,7 @@ class LoginController extends Controller
     /**
      * Display the specified resource.
      */
-    public function showLoginForm()
+    public function view()
     {
         return view('portal.login');
     }
@@ -26,7 +26,7 @@ class LoginController extends Controller
 
             $request->session()->regenerate();
 
-            return redirect('/')->with('success', 'Welcome back! You have successfully signed in.');
+            return redirect()->route('home')->with('success', 'Welcome back! You have successfully signed in.');
         }
 
         return back()->withErrors([
@@ -44,6 +44,6 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/login')->with('success', 'You have been logged out.');
+        return redirect()->route('login')->with('success', 'You have been logged out.');
     }
 }

@@ -19,7 +19,7 @@ class RegisterController extends Controller
         $user = User::create($request->validated());
         Auth::login($user);
 
-        return redirect('/')->with('success', 'Account created successfully! Welcome to the portal.');
+        return redirect()->route('dashboard')->with('success', 'Account created successfully! Welcome to the portal.');
 
     }
 }

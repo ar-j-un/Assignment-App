@@ -6,15 +6,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('portal.dashboard');
-});
+})->name('dashboard');
 
-Route::get('/register', [RegisterController::class, 'view']);
-Route::post('/register', [RegisterController::class, 'register']);
+Route::get('/register', [RegisterController::class, 'view'])->name('register');
+Route::post('/register', [RegisterController::class, 'register'])->name('register.store');
 
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [LoginController::class, 'login']);
+Route::get('/login', [LoginController::class, 'view'])->name('login');
+Route::post('/login', [LoginController::class, 'login'])->name('login.authenticate');
 
-Route::post('/logout', [LoginController::class, 'logout']);
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // use App\Http\Controllers\Teams\TeamInvitationController;
 // use App\Http\Middleware\EnsureTeamMembership;

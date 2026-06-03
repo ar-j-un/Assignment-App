@@ -8,7 +8,7 @@
                 </a>
             </li>
             <li class="nav-item d-none d-md-block">
-                <a href="/" class="nav-link">Dashboard</a>
+                <a href="{{ route('dashboard') }}" class="nav-link">Dashboard</a>
             </li>
         </ul>
 
@@ -16,12 +16,12 @@
             
             @guest
                 <li class="nav-item">
-                    <a href="/login" class="nav-link">
+                    <a href="{{ route('login') }}" class="nav-link">
                         <i class="fas fa-sign-in-alt me-1"></i> Sign In
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/register" class="nav-link">
+                    <a href="{{ route('register') }}" class="nav-link">
                         <i class="fas fa-user-plus me-1"></i> Register
                     </a>
                 </li>
@@ -47,7 +47,7 @@
                         </li>
                         <li><hr class="dropdown-divider"></li>
                         <li>
-                            <form action="/logout" method="POST" id="navbar-logout-form" class="d-none">
+                            <form action="{{ route('logout') }}" method="POST" id="navbar-logout-form" class="d-none">
                                 @csrf
                             </form>
                             <a href="#" class="dropdown-item text-danger" onclick="event.preventDefault(); document.getElementById('navbar-logout-form').submit();">

@@ -11,7 +11,7 @@
                 <h3 class="card-title float-none fw-bold">Account Sign In</h3>
             </div>
             
-            <form action="/login" method="POST">
+            <form action="{{ route('login.authenticate') }}" method="POST">
                 @csrf
                 
                 <div class="card-body">
@@ -44,7 +44,7 @@
                 <div class="card-footer d-grid">
                     <button type="submit" class="btn btn-primary">Sign In</button>
                     <div class="text-center mt-3">
-                        <a href="/register" class="small">Don't have an account? Register here</a>
+                        <a href="{{ route('register') }}" class="small">Don't have an account? Register here</a>
                     </div>
                 </div>
             </form>

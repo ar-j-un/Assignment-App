@@ -61,10 +61,10 @@
                     To access your customized dashboard, manage features, and review your internal professional credentials, please sign into your workspace profile.
                 </p>
                 <div class="mt-4">
-                    <a href="/login" class="btn btn-primary fw-bold px-4 py-2 me-2 shadow-sm">
+                    <a href="{{ route('login') }}" class="btn btn-primary fw-bold px-4 py-2 me-2 shadow-sm">
                         <i class="fas fa-sign-in-alt me-2"></i> Sign In Now
                     </a>
-                    <a href="/register" class="btn btn-outline-secondary px-4 py-2">
+                    <a href="{{ route('register') }}" class="btn btn-outline-secondary px-4 py-2">
                         Create an Account
                     </a>
                 </div>
