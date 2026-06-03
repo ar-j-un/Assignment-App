@@ -47,16 +47,17 @@
 
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label for="phone_number" class="form-label">Phone Number</label>
+                            <label for="phone_number" class="form-label">Phone Number<span class="text-danger">*</span></label>
                             <input type="tel" class="form-control @error('phone_number') is-invalid @enderror" 
-                                   id="phone_number" name="phone_number" value="{{ old('phone_number') }}" placeholder="+1 234 567 8900">
+                                   id="phone_number" name="phone_number" value="{{ old('phone_number') }}" 
+                                   placeholder="+1 234 567 8900" required>
                             @error('phone_number') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                         
                         <div class="col-md-6 mb-3">
-                            <label for="age" class="form-label">Age</label>
+                            <label for="age" class="form-label">Age<span class="text-danger">*</span></label>
                             <input type="number" class="form-control @error('age') is-invalid @enderror" 
-                                   id="age" name="age" value="{{ old('age') }}" min="18" max="100">
+                                   id="age" name="age" value="{{ old('age') }}" min="18" max="100" required>
                             @error('age') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                     </div>
