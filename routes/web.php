@@ -8,7 +8,7 @@ Route::get('/', function () {
     return view('portal.dashboard');
 });
 
-Route::get('/register', [RegisterController::class, 'showRegistrationForm']);
+Route::get('/register', [RegisterController::class, 'view']);
 Route::post('/register', [RegisterController::class, 'register']);
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
