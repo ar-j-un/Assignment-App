@@ -15,6 +15,8 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
 
-        return view('portal.dashboard', compact('user'));
+        return view('portal.dashboard', [
+            'user' => $user,
+        ]);
     }
 }
