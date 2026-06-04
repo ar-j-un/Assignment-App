@@ -24,7 +24,7 @@
             <!-- Circular Avatar Container -->
             <div class="d-flex justify-content-center" style="margin-top: -50px;">
                 <div>
-                    @if($user->profile_image)
+                    @if ($user->profile_image_path)
                         <img src="{{ asset('storage/' . $user->profile_image_path) }}" 
                              alt="User Profile Photo" 
                              class="rounded-circle object-fit-cover" 
