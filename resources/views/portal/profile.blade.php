@@ -23,10 +23,17 @@
             
             <!-- Circular Avatar Container -->
             <div class="d-flex justify-content-center" style="margin-top: -50px;">
-                <div class="bg-white p-1 rounded-circle shadow">
-                    <div class="d-flex align-items-center justify-content-center bg-light text-primary rounded-circle border border-2 border-primary-subtle" style="width: 100px; height: 100px; font-size: 2.5rem;">
-                        <i class="fas fa-user"></i>
-                    </div>
+                <div>
+                    @if($user->profile_image)
+                        <img src="{{ asset('storage/' . $user->profile_image_path) }}" 
+                             alt="User Profile Photo" 
+                             class="rounded-circle object-fit-cover" 
+                             style="width: 100px; height: 100px; border: 2px solid var(--bs-primary-border-subtle);">
+                    @else
+                        <div class="d-flex align-items-center justify-content-center bg-light text-primary rounded-circle border border-2 border-primary-subtle" style="width: 100px; height: 100px; font-size: 2.5rem;">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    @endif
                 </div>
             </div>
             
@@ -48,7 +55,7 @@
                 </h5>
             </div>
 
-            <form action="{{ route('profile.update') }}" method="POST">
+            <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
 
@@ -91,9 +98,10 @@
                         </div>
 
                         <div class="col-12 mb-2">
-                            <label for="avatar" class="form-label fw-semibold">Profile Photo</label>
-                            <input class="form-control" type="file" id="avatar" name="avatar">
-                            <div class="form-text small">Upload a new photo to replace your current avatar.</div>
+                            <label for="profile_image_path" class="form-label fw-semibold">Upload Profile Photo</label>
+                            <input class="form-control @error('profile_image_path') is-invalid @enderror" type="file" id="profile_image_path" name="profile_image_path" accept="image/*">
+                            <div class="form-text small">Accepted formats: JPG, PNG, GIF (Max 500KB).</div>
+                            @error('profile_image_path') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
 
                     </div>
