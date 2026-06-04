@@ -49,8 +49,11 @@
                     </table>
                 </div>
                 
-                <div class="card-footer bg-light-subtle ps-4 text-muted small py-3">
-                    Account Created: {{ $user->created_at->format('F d, Y') }}
+                <div class="card-footer bg-light-subtle d-flex justify-content-between align-items-center p-3">
+                    <span class="text-muted small">Joined {{ $user->created_at->format('M d, Y') }}</span>
+                    <a href="{{ route('profile') }}" class="btn btn-outline-primary btn-sm fw-semibold shadow-sm">
+                        View Full Profile <i class="fas fa-arrow-right ms-1"></i>
+                    </a>
                 </div>
             </div>
         </div>
