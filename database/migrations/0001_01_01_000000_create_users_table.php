@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('age');
             $table->string('department');
             $table->string('designation');
+            $table->string('profile_image_path')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
