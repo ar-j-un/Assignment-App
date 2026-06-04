@@ -28,6 +28,7 @@ class UpdateProfileRequest extends FormRequest
             'age' => 'required|integer|min:18|max:100',
             'department' => 'required|string|max:255',
             'designation' => 'required|string|max:255',
+            'profile_image_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:500',
         ];
     }
 }
