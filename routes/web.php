@@ -16,3 +16,4 @@ Route::post('/login', [LoginController::class, 'login'])->name('login.authentica
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/profile', [ProfileController::class, 'show'])->name('profile')->middleware('auth');
+Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update')->middleware('auth');
