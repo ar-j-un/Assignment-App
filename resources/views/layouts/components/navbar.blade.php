@@ -47,6 +47,11 @@
                         </li>
                         <li><hr class="dropdown-divider"></li>
                         <li>
+                            <a href="{{ route('profile') }}" class="dropdown-item">
+                                <i class="fas fa-user-circle me-2 text-primary"></i> My Profile
+                            </a>
+                        </li>
+                        <li>
                             <form action="{{ route('logout') }}" method="POST" id="navbar-logout-form" class="d-none">
                                 @csrf
                             </form>
