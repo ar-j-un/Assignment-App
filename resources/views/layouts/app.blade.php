@@ -12,9 +12,9 @@
 <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
     <div class="app-wrapper">
         
-        @include('layouts.components.navbar')
+        @include('components.navbar')
 
-        @include('layouts.components.sidebar')
+        @include('components.sidebar')
 
         <main class="app-main">
             <div class="app-content-header">
