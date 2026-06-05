@@ -15,50 +15,33 @@
                 @csrf 
                 <div class="card-body">
                     <div class="row">
+
                         <div class="col-md-6 mb-3">
-                            <label for="name" class="form-label">Full Name<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" 
-                                   id="name" name="name" value="{{ old('name') }}" placeholder="Name" required>
-                            @error('name') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                            <x-form.input name="name" label="Full Name" placeholde="Name" required />
                         </div>
-                        
-                        <div class="col-md-6 mb-3">
-                            <label for="email" class="form-label">Email ID<span class="text-danger">*</span></label>
-                            <input type="email" class="form-control @error('email') is-invalid @enderror" 
-                                   id="email" name="email" value="{{ old('email') }}" placeholder="john@example.com" required>
-                            @error('email') <div class="invalid-feedback">{{ $message }}</div> @enderror
+
+                        <div class="col-md-6">
+                            <x-form.input name="email" label="Email ID" type="email" placeholder="john@example.com" required />
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="password" class="form-label">Password<span class="text-danger">*</span></label>
-                            <input type="password" class="form-control @error('password') is-invalid @enderror" 
-                                   id="password" name="password" required>
-                            @error('password') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        <div class="col-md-6">
+                            <x-form.input name="password" label="Password" type="password" required />
                         </div>
                         
-                        <div class="col-md-6 mb-3">
-                            <label for="password_confirmation" class="form-label">Confirm Password<span class="text-danger">*</span></label>
-                            <input type="password" class="form-control" 
-                                   id="password_confirmation" name="password_confirmation" required>
+                        <div class="col-md-6">
+                            <x-form.input name="password_confirmation" label="Confirm Password" type="password" required />
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="phone_number" class="form-label">Phone Number<span class="text-danger">*</span></label>
-                            <input type="tel" class="form-control @error('phone_number') is-invalid @enderror" 
-                                   id="phone_number" name="phone_number" value="{{ old('phone_number') }}" 
-                                   placeholder="+1 234 567 8900" required>
-                            @error('phone_number') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        <div class="col-md-6">
+                            <x-form.input name="phone_number" label="Phone Number" type="tel" placeholder="+1 234 567 8900" required />
                         </div>
                         
-                        <div class="col-md-6 mb-3">
-                            <label for="age" class="form-label">Age<span class="text-danger">*</span></label>
-                            <input type="number" class="form-control @error('age') is-invalid @enderror" 
-                                   id="age" name="age" value="{{ old('age') }}" min="18" max="100" required>
-                            @error('age') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        <div class="col-md-6">
+                            <x-form.input name="age" label="Age" type="number" min="18" max="100" required />
                         </div>
                     </div>
 
@@ -75,11 +58,8 @@
                             @error('department') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                         
-                        <div class="col-md-6 mb-3">
-                            <label for="designation" class="form-label">Designation<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control @error('designation') is-invalid @enderror" 
-                                   id="designation" name="designation" value="{{ old('designation') }}" placeholder="e.g., Senior Developer" required>
-                            @error('designation') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        <div class="col-md-6">
+                            <x-form.input name="designation" label="Designation" placeholder="e.g., Senior Developer" required />
                         </div>
                     </div>
                 </div> <div class="card-footer d-flex justify-content-end">
