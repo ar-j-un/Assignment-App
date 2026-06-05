@@ -11,7 +11,7 @@ class ProfileController extends Controller
     /**
      * Display the Profile Page.
      */
-    public function show(Request $request)
+    public function view(Request $request)
     {
         return view('portal.profile', [
             'user' => $request->user(),
