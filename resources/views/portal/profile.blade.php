@@ -36,7 +36,8 @@
                              class="rounded-circle object-fit-cover" 
                              style="width: 100px; height: 100px; border: 2px solid var(--bs-primary-border-subtle);">
                     @else
-                        <div class="d-flex align-items-center justify-content-center bg-light text-primary rounded-circle border border-2 border-primary-subtle" style="width: 100px; height: 100px; font-size: 2.5rem;">
+                        <div class="d-flex align-items-center justify-content-center bg-light text-primary rounded-circle border border-2 border-primary-subtle" 
+                             style="width: 100px; height: 100px; font-size: 2.5rem;">
                             <i class="fas fa-user"></i>
                         </div>
                     @endif
@@ -88,7 +89,7 @@
                             <label for="department" class="form-label">Department<span class="text-danger">*</span></label>
                             <select class="form-select @error('department') is-invalid @enderror" id="department" name="department" required>
                                 <option value="" disabled {{ old('department', $user->department ?? '') === '' ? 'selected' : '' }}>Select Department...</option>
-        
+
                                 <option value="IT" {{ old('department', $user->department ?? '') === 'IT' ? 'selected' : '' }}>Information Technology</option>
                                 <option value="HR" {{ old('department', $user->department ?? '') === 'HR' ? 'selected' : '' }}>Human Resources</option>
                                 <option value="Finance" {{ old('department', $user->department ?? '') === 'Finance' ? 'selected' : '' }}>Finance</option>

@@ -6,6 +6,7 @@
     'placeholder' => '',
     'required' => false,
     'disabled' => false,
+    'icon' => null,
 ])
 
 <div class="mb-3">
@@ -16,6 +17,11 @@
         @endif
     </label>
     
+    @if($icon)
+        <div class="input-group">
+            <span class="input-group-text"><i class="{{ $icon }}"></i></span>
+    @endif
+
     <input 
         type="{{ $type }}" 
         class="form-control @error($name) is-invalid @enderror" 
@@ -27,8 +33,12 @@
         {{ $disabled ? 'disabled' : '' }}
         {{ $attributes }}
     >
+
+    @if($icon)
+        </div>
+    @endif
     
     @error($name) 
-        <div class="invalid-feedback">{{ $message }}</div> 
+        <div class="invalid-feedback d-block">{{ $message }}</div> 
     @enderror
 </div>
