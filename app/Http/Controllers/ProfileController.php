@@ -27,35 +27,25 @@ class ProfileController extends Controller
 
         $user = $request->user();
         $validated = $request->validated();
-
         $oldImagePath = $user->profile_image_path;
         $newImagePath = null;
 
         try {
-
             DB::beginTransaction();
-
             if ($request->hasFile('profile_image_path')) {
                 $newImagePath = $request->file('profile_image_path')->store('profile_image', 'public');
                 $validated['profile_image_path'] = $newImagePath;
             }
-
             $user->update($validated);
-
             DB::commit();
-
             if ($newImagePath && $oldImagePath && Storage::disk('public')->exists($oldImagePath)) {
                 Storage::disk('public')->delete($oldImagePath);
             }
 
             return redirect()->route('profile')->with('success', 'Profile updated successfully!');
-
         } catch (\Exception $err) {
-
             DB::rollBack();
-
             Log::error('Profile Update Failed: '.$err->getMessage());
-
             if ($newImagePath && Storage::disk('public')->exists($newImagePath)) {
                 Storage::disk('public')->delete($newImagePath);
             }
