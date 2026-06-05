@@ -15,21 +15,16 @@
                 @csrf
                 
                 <div class="card-body">
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email Address</label>
-                        <div class="input-group">
-                            <x-form.input 
-                                name="email" 
-                                label="Email ID" 
-                                type="email" 
-                                placeholder="Enter email" 
-                                icon="fas fa-envelope" 
-                                required 
-                            />
-                        </div>
-                    </div>
 
-                    <div class="mb-3">
+                        <x-form.input 
+                            name="email" 
+                            label="Email Address" 
+                            type="email" 
+                            placeholder="Enter email" 
+                            icon="fas fa-envelope" 
+                            required 
+                        />
+
                         <x-form.input 
                             name="password" 
                             label="Password" 
@@ -38,7 +33,6 @@
                             icon="fas fa-lock" 
                             required 
                         />
-                    </div>
 
                     <div class="mb-3 form-check">
                         <input type="checkbox" class="form-check-input" id="remember" name="remember">
