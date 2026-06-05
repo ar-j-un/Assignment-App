@@ -84,8 +84,17 @@
                             <x-form.input name="age" label="Age" type="number" :value="$user->age" />
                         </div>
 
-                        <div class="col-md-6">
-                            <x-form.input name="department" label="Department" :value="$user->department" required />
+                        <div class="col-md-6 mb-3">
+                            <label for="department" class="form-label">Department<span class="text-danger">*</span></label>
+                            <select class="form-select @error('department') is-invalid @enderror" id="department" name="department" required>
+                                <option value="" disabled {{ old('department', $user->department ?? '') === '' ? 'selected' : '' }}>Select Department...</option>
+        
+                                <option value="IT" {{ old('department', $user->department ?? '') === 'IT' ? 'selected' : '' }}>Information Technology</option>
+                                <option value="HR" {{ old('department', $user->department ?? '') === 'HR' ? 'selected' : '' }}>Human Resources</option>
+                                <option value="Finance" {{ old('department', $user->department ?? '') === 'Finance' ? 'selected' : '' }}>Finance</option>
+                                <option value="Marketing" {{ old('department', $user->department ?? '') === 'Marketing' ? 'selected' : '' }}>Marketing</option>
+                            </select>
+                            @error('department') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
 
                         <div class="col-md-6">
