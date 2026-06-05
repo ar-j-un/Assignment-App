@@ -3,6 +3,7 @@
     'label',
     'type' => 'text',
     'value' => '',
+    'placeholder' => '',
     'required' => false,
     'disabled' => false,
 ])
@@ -21,6 +22,7 @@
         id="{{ $name }}" 
         name="{{ $name }}" 
         value="{{ old($name, $value) }}"
+        placeholder="{{ $placeholder }}"
         {{ $required ? 'required' : '' }}
         {{ $disabled ? 'disabled' : '' }}
         {{ $attributes }}
