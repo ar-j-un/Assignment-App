@@ -67,49 +67,7 @@
                 @method('PATCH')
 
                 <div class="card-body p-4">
-                    <div class="row">
-
-                        <div class="col-md-6">
-                            <x-form.input name="name" label="Full Name" :value="$user->name" required />
-                        </div>
-
-                        <div class="col-md-6">
-                            <x-form.input name="email" label="Email Address" type="email" :value="$user->email" disabled />
-                        </div>
-
-                        <div class="col-md-6">
-                            <x-form.input name="phone_number" label="Phone Number" type="tel" :value="$user->phone_number" />
-                        </div>
-
-                        <div class="col-md-6">
-                            <x-form.input name="age" label="Age" type="number" :value="$user->age" />
-                        </div>
-
-                        <div class="col-md-6 mb-3">
-                            <label for="department" class="form-label">Department<span class="text-danger">*</span></label>
-                            <select class="form-select @error('department') is-invalid @enderror" id="department" name="department" required>
-                                <option value="" disabled {{ old('department', $user->department ?? '') === '' ? 'selected' : '' }}>Select Department...</option>
-
-                                <option value="IT" {{ old('department', $user->department ?? '') === 'IT' ? 'selected' : '' }}>Information Technology</option>
-                                <option value="HR" {{ old('department', $user->department ?? '') === 'HR' ? 'selected' : '' }}>Human Resources</option>
-                                <option value="Finance" {{ old('department', $user->department ?? '') === 'Finance' ? 'selected' : '' }}>Finance</option>
-                                <option value="Marketing" {{ old('department', $user->department ?? '') === 'Marketing' ? 'selected' : '' }}>Marketing</option>
-                            </select>
-                            @error('department') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                        </div>
-
-                        <div class="col-md-6">
-                            <x-form.input name="designation" label="Designation" :value="$user->designation" required />
-                        </div>
-                        
-                        <div class="col-12 mb-2">
-                            <label for="profile_image_path" class="form-label fw-semibold">Upload Profile Photo</label>
-                            <input class="form-control @error('profile_image_path') is-invalid @enderror" type="file" id="profile_image_path" name="profile_image_path" accept="image/*">
-                            <div class="form-text small">Accepted formats: JPG, PNG, GIF (Max 500KB).</div>
-                            @error('profile_image_path') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                        </div>
-
-                    </div>
+                    <x-form.user-fields :user="$user" />
                 </div>
 
                 <div class="card-footer bg-light-subtle text-end py-3 px-4">
