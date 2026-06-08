@@ -39,6 +39,7 @@ class UpdateProfileRequest extends FormRequest
     {
         return [
             'name.required' => 'Please provide your full name.',
+            'name.max' => 'Name should not exceed 200 characters.',
             'phone_number.required' => 'A contact number is required.',
             'phone_number.max' => 'The phone number cannot be longer than 20 characters.',
             'age.required' => 'Please enter your age.',
