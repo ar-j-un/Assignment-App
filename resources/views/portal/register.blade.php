@@ -14,7 +14,7 @@
             <form action="{{ route('register.store') }}" method="POST">
                 @csrf 
                 <div class="card-body">
-                   <x-form.user-fields />
+                   @include('portal.partials._user-fields')
                 </div>
                 <div class="card-footer d-flex justify-content-end">
                     <button type="reset" class="btn btn-secondary me-2">Clear</button>

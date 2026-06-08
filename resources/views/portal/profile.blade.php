@@ -67,7 +67,7 @@
                 @method('PATCH')
 
                 <div class="card-body p-4">
-                    <x-form.user-fields :user="$user" />
+                    @include('portal.partials._user-fields', ['user' => $user])
                 </div>
 
                 <div class="card-footer bg-light-subtle text-end py-3 px-4">
