@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateProfileRequest;
+use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -43,7 +44,7 @@ class ProfileController extends Controller
             }
 
             return redirect()->route('profile')->with('success', 'Profile updated successfully!');
-        } catch (\Exception $err) {
+        } catch (Exception $err) {
             DB::rollBack();
             Log::error('Profile Update Failed: '.$err->getMessage());
             if ($newImagePath && Storage::disk('public')->exists($newImagePath)) {
