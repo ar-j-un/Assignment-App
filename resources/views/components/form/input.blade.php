@@ -12,16 +12,15 @@
 <div class="mb-3">
     <label for="{{ $name }}" class="form-label fw-semibold">
         {{ $label }} 
-        @isset($required)
+        @if($required)
             <span class="text-danger">*</span>
-        @endisset
+        @endif
     </label>
     
    <div class="{{ $icon ? 'input-group' : '' }}">
-        @isset($icon)
-            <span class="input-group-text">
-                <i class="{{ $icon }}"></i></span>
-        @endisset
+        @if($icon)
+            <span class="input-group-text"><i class="{{ $icon }}"></i></span>
+        @endif
 
     <input 
         type="{{ $type }}" 
