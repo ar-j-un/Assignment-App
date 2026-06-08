@@ -39,7 +39,7 @@ class UpdateProfileRequest extends FormRequest
     {
         return [
             'name.required' => 'Please provide your full name.',
-            'name.max' => 'Name should not exceed 200 characters.',
+            'name.max' => 'Name should not exceed 255 characters.',
             'phone_number.required' => 'A contact number is required.',
             'phone_number.max' => 'The phone number cannot be longer than 20 characters.',
             'age.required' => 'Please enter your age.',
@@ -47,9 +47,9 @@ class UpdateProfileRequest extends FormRequest
             'age.min' => 'You must be at least 18 years old.',
             'age.max' => 'Age cannot exceed 100 years.',
             'department.required' => 'Please select your department.',
-            'department.max' => 'Department should not exceed 200 characters.',
+            'department.max' => 'Department should not exceed 255 characters.',
             'designation.required' => 'Please specify your job title or designation.',
-            'designation.max' => 'Designation should not exceed 200 characters.',
+            'designation.max' => 'Designation should not exceed 255 characters.',
             'profile_image_path.image' => 'The uploaded file must be an image.',
             'profile_image_path.mimes' => 'The profile photo must be a file of type: jpeg, png, jpg, or gif.',
             'profile_image_path.max' => 'The profile photo size cannot be larger than 500 KB.',
