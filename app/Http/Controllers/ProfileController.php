@@ -30,11 +30,11 @@ class ProfileController extends Controller
         $oldImage = $user->profile_image_path;
 
         try {
-            if ($request->hasFile('profile_image_path')) {
-                $validated['profile_image_path'] = $request->file('profile_image_path')->store('profile_images', 'public');
+            if ($request->hasFile('profile_image')) {
+                $validated['profile_image_path'] = $request->file('profile_image')->store('profile_images', 'public');
             }
             $user->update($validated);
-            if ($request->hasFile('profile_image_path') && $oldImage) {
+            if ($request->hasFile('profile_image') && $oldImage) {
                 Storage::disk('public')->delete($oldImage);
             }
 
@@ -42,7 +42,7 @@ class ProfileController extends Controller
 
         } catch (Exception $err) {
             Log::error('Profile Update Failed: '.$err->getMessage());
-            if (isset($validated['profile_image_path']) && $request->hasFile('profile_image_path')) {
+            if (isset($validated['profile_image_path']) && $request->hasFile('profile_image')) {
                 Storage::disk('public')->delete($validated['profile_image_path']);
             }
 

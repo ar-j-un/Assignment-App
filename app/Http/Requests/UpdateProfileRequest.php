@@ -28,7 +28,7 @@ class UpdateProfileRequest extends FormRequest
             'age' => 'required|integer|min:18|max:100',
             'department' => 'required|string|max:255',
             'designation' => 'required|string|max:255',
-            'profile_image_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:500',
+            'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:500',
         ];
     }
 
@@ -50,9 +50,9 @@ class UpdateProfileRequest extends FormRequest
             'department.max' => 'Department should not exceed 255 characters.',
             'designation.required' => 'Please specify your job title or designation.',
             'designation.max' => 'Designation should not exceed 255 characters.',
-            'profile_image_path.image' => 'The uploaded file must be an image.',
-            'profile_image_path.mimes' => 'The profile photo must be a file of type: jpeg, png, jpg, or gif.',
-            'profile_image_path.max' => 'The profile photo size cannot be larger than 500 KB.',
+            'profile_image.image' => 'The uploaded file must be an image.',
+            'profile_image.mimes' => 'The profile photo must be a file of type: jpeg, png, jpg, or gif.',
+            'profile_image.max' => 'The profile photo size cannot be larger than 500 KB.',
         ];
     }
 }

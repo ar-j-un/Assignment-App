@@ -96,10 +96,10 @@
 
     @if ($user)
         <div class="col-12 mb-2">
-            <label for="profile_image_path" class="form-label fw-semibold">Upload Profile Photo</label>
-            <input class="form-control @error('profile_image_path') is-invalid @enderror" type="file" id="profile_image_path" name="profile_image_path" accept="image/*">
+            <label for="profile_image" class="form-label fw-semibold">Upload Profile Photo</label>
+            <input class="form-control @error('profile_image') is-invalid @enderror" type="file" id="profile-image" name="profile_image" accept="image/*">
             <div class="form-text small">Accepted formats: JPG, PNG, GIF (Max 500KB).</div>
-            @error('profile_image_path')
+            @error('profile_image')
                 <div class="invalid-feedback d-block">{{ $message }}</div>
             @enderror
         </div>
