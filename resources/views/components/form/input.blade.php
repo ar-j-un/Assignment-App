@@ -17,10 +17,10 @@
         @endif
     </label>
     
-   <div class="{{ $icon ? 'input-group' : '' }}">
-        @if ($icon)
+    @if($icon)
+        <div class="input-group">
             <span class="input-group-text"><i class="{{ $icon }}"></i></span>
-        @endif
+    @endif
 
     <input 
         type="{{ $type }}" 
@@ -34,7 +34,9 @@
         {{ $attributes }}
     >
 
-    </div>
+    @if($icon)
+        </div>
+    @endif
     
     @error($name) 
         <div class="invalid-feedback d-block">{{ $message }}</div> 
