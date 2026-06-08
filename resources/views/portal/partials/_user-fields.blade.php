@@ -25,7 +25,7 @@
         />
     </div>
 
-    @if(!$user)
+    @if (!$user)
         <div class="col-md-6">
             <x-form.input 
                 name="password" 
@@ -94,7 +94,7 @@
         />
     </div>
 
-    @if($user)
+    @if ($user)
         <div class="col-12 mb-2">
             <label for="profile_image_path" class="form-label fw-semibold">Upload Profile Photo</label>
             <input class="form-control @error('profile_image_path') is-invalid @enderror" type="file" id="profile_image_path" name="profile_image_path" accept="image/*">
