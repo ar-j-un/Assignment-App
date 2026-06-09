@@ -15,25 +15,24 @@
                 @csrf
                 
                 <div class="card-body">
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email Address</label>
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                            <input type="email" class="form-control @error('email') is-invalid @enderror" 
-                                   id="email" name="email" value="{{ old('email') }}" placeholder="Enter email" required>
-                            @error('email') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                        </div>
-                    </div>
 
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                            <input type="password" class="form-control @error('password') is-invalid @enderror" 
-                                   id="password" name="password" placeholder="Enter password" required>
-                            @error('password') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                        </div>
-                    </div>
+                        <x-form.input 
+                            name="email" 
+                            label="Email Address" 
+                            type="email" 
+                            placeholder="Enter email" 
+                            icon="fas fa-envelope" 
+                            required 
+                        />
+
+                        <x-form.input 
+                            name="password" 
+                            label="Password" 
+                            type="password" 
+                            placeholder="Enter password" 
+                            icon="fas fa-lock" 
+                            required 
+                        />
 
                     <div class="mb-3 form-check">
                         <input type="checkbox" class="form-check-input" id="remember" name="remember">

@@ -30,6 +30,7 @@ class User extends Authenticatable
         'age',
         'department',
         'designation',
+        'profile_image_path',
     ];
 
     /**
