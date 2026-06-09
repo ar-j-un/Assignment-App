@@ -23,7 +23,7 @@ class RecipeController extends Controller
 
         try {
             if ($request->hasFile('recipe_image')) {
-                $validated['recipe_image_path'] = $request->file('image_path')->store('recipe_images', 'public');
+                $validated['recipe_image_path'] = $request->file('recipe_image')->store('recipe_images', 'public');
             }
             Recipe::create($validated);
 
