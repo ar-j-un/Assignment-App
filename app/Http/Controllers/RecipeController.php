@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreRecipeRequest;
-use App\Models\Recipe;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
@@ -25,7 +24,8 @@ class RecipeController extends Controller
             if ($request->hasFile('recipe_image')) {
                 $validated['recipe_image_path'] = $request->file('recipe_image')->store('recipe_images', 'public');
             }
-            Recipe::create($validated);
+            unset($validated['recipe_image']);
+            $request->user()->recipes()->create($validated);
 
             return redirect()->back()->with('success', 'Recipe created successfully!');
         } catch (Exception $err) {
