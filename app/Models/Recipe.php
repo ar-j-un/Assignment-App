@@ -24,4 +24,8 @@ class Recipe extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    protected $casts = [
+        'ingredients' => 'array',
+    ];
 }
