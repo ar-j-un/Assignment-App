@@ -19,7 +19,7 @@
 
         <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100 shadow-sm border-0 rounded-3 overflow-hidden recipe-card">
-                <a href="{{ route('recipes.view', $recipe) }}" class="d-block position-relative ratio ratio-16x9">
+                <a href="{{ route('recipes.show', $recipe) }}" class="d-block position-relative ratio ratio-16x9">
                     <img src="{{ Storage::url($recipe->recipe_image_path) }}" 
                          alt="{{ $recipe->recipe_name }}" 
                          class="object-fit-cover w-100 h-100"
@@ -28,7 +28,7 @@
 
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title fw-bold text-dark mb-2">
-                        <a href="{{ route('recipes.view', $recipe) }}" class="text-decoration-none text-dark">{{ $recipe->recipe_name }}</a>
+                        <a href="{{ route('recipes.show', $recipe) }}" class="text-decoration-none text-dark">{{ $recipe->recipe_name }}</a>
                     </h5>
                     
                     <div class="mb-3 d-flex gap-2 flex-wrap">
@@ -44,7 +44,7 @@
                         {{ Str::limit($recipe->steps, 100, '...') }}
                     </p>
 
-                    <a href="{{ route('recipes.view', $recipe) }}" class="btn btn-outline-primary btn-sm fw-bold mt-3 stretched-link">
+                    <a href="{{ route('recipes.show', $recipe) }}" class="btn btn-outline-primary btn-sm fw-bold mt-3 stretched-link">
                         View Recipe <i class="fas fa-arrow-right ms-1"></i>
                     </a>
                 </div>

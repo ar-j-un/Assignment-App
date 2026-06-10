@@ -53,7 +53,7 @@ class RecipeController extends Controller
         ]);
     }
 
-    public function view(Recipe $recipe): View
+    public function show(Recipe $recipe): View
     {
         return view('portal.recipes.view', [
             'recipe' => $recipe,
