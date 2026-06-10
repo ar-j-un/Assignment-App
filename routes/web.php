@@ -21,3 +21,4 @@ Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.up
 
 Route::get('/recipes/create', [RecipeController::class, 'create'])->name('recipes.create')->middleware('auth');
 Route::post('/recipes', [RecipeController::class, 'store'])->name('recipes.store')->middleware('auth');
+Route::get('/my-recipes', [RecipeController::class, 'index'])->name('recipes.index')->middleware('auth');
