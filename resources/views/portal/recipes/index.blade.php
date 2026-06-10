@@ -17,8 +17,7 @@
                 <a href="{{ route('recipes.show', $recipe) }}" class="d-block position-relative ratio ratio-16x9">
                     <img src="{{ Storage::url($recipe->recipe_image_path) }}" 
                          alt="{{ $recipe->recipe_name }}" 
-                         class="object-fit-cover w-100 h-100"
-                         style="transition: transform 0.3s ease;">
+                         class="object-fit-cover w-100 h-100">
                 </a>
 
                 <div class="card-body d-flex flex-column">
