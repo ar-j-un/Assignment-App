@@ -46,16 +46,11 @@
                             'bg-secondary'
                         ];
                     @endphp
-
-                    @if(is_array($recipe->ingredients))
                         @foreach($recipe->ingredients as $index => $ingredient)
                             <span class="badge {{ $badgeColors[$index % count($badgeColors)] }} fs-6 px-3 py-2 rounded-pill shadow-sm">
                                 <i class="fas fa-tag me-1.5 small opacity-75"></i> {{ $ingredient }}
                             </span>
                         @endforeach
-                    @else
-                        <span class="text-muted">No ingredients specified.</span>
-                    @endif
                 </div>
             </div>
 
