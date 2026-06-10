@@ -59,11 +59,6 @@
     @endforelse
 </div>
 
-<style>
-    .recipe-card:hover img {
-        transform: scale(1.05);
-    }
-</style>
 @endsection
 
 
