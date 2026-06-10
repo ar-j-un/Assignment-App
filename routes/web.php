@@ -19,7 +19,6 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/profile', [ProfileController::class, 'view'])->name('profile')->middleware('auth');
 Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update')->middleware('auth');
 
-Route::get('/recipes/create', [RecipeController::class, 'create'])->name('recipes.create')->middleware('auth');
-Route::post('/recipes', [RecipeController::class, 'store'])->name('recipes.store')->middleware('auth');
-Route::get('/my-recipes', [RecipeController::class, 'index'])->name('recipes.index')->middleware('auth');
-Route::get('/recipes/{recipe}', [RecipeController::class, 'view'])->name('recipes.view')->middleware('auth');
+Route::resource('recipes', RecipeController::class)
+    ->only(['index', 'create', 'store', 'view'])
+    ->middleware('auth');
