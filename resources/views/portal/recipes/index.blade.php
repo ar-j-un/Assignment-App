@@ -12,11 +12,6 @@
 
 <div class="row">
     @forelse($recipes as $recipe)
-        @php
-            // $ingredientCount = count(array_filter(explode("\n", str_replace("\r", "", $recipe->ingredients))));
-            $ingredientCount = is_array($recipe->ingredients) ? count($recipe->ingredients) : 0;
-        @endphp
-
         <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100 shadow-sm border-0 rounded-3 overflow-hidden recipe-card">
                 <a href="{{ route('recipes.show', $recipe) }}" class="d-block position-relative ratio ratio-16x9">
@@ -33,7 +28,7 @@
                     
                     <div class="mb-3 d-flex gap-2 flex-wrap">
                         <span class="badge bg-success-subtle text-success border border-success-subtle px-2 py-1 fs-7">
-                            <i class="fas fa-carrot me-1"></i> {{ $ingredientCount }} Ingredients
+                            <i class="fas fa-carrot me-1"></i> {{ $recipe->ingredients ? count($recipe->ingredients) : 0  }} Ingredients
                         </span>
                         <span class="badge bg-light text-dark border px-2 py-1 fs-7 shadow-sm">
                             <i class="fas fa-clock text-warning me-1"></i> {{ $recipe->cooking_time }} mins
@@ -70,3 +65,12 @@
     }
 </style>
 @endsection
+
+
+
+
+
+{{-- @php
+    $ingredientCount = count(array_filter(explode("\n", str_replace("\r", "", $recipe->ingredients))));
+    $ingredientCount = is_array($recipe->ingredients) ? count($recipe->ingredients) : 0;
+@endphp --}}
