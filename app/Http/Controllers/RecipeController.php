@@ -55,7 +55,7 @@ class RecipeController extends Controller
 
     public function show(Recipe $recipe): View
     {
-        return view('portal.recipes.view', [
+        return view('portal.recipes.show', [
             'recipe' => $recipe,
         ]);
     }
