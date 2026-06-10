@@ -41,6 +41,8 @@ class StoreRecipeRequest extends FormRequest
             'recipe_image.max' => 'The recipe image cannot be larger than 2MB.',
             'recipe_image.mimes' => 'The recipe image must be a file of type: jpeg, png, jpg, or webp.',
             'cooking_time.required' => 'Please estimate how long this takes to cook.',
+            'cooking_time.integer' => 'Please enter number only.',
+            'cooking_time.min' => 'Please enter atleast a minimum of 1 minute.',
             'ingredients.required' => 'Don\'t forget the ingredients!',
             'steps.required' => 'Please provide step-by-step cooking instructions.',
         ];
