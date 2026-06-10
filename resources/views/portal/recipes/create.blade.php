@@ -66,7 +66,14 @@
                             
                             <div class="mb-3">
                                 <label for="ingredients" class="form-label fw-semibold">Ingredients <span class="text-danger">*</span></label>
-                                <textarea class="form-control @error('ingredients') is-invalid @enderror" id="ingredients" name="ingredients" rows="4" placeholder="List ingredients separated by line breaks..." required>{{ old('ingredients') }}</textarea>
+                                <input type="text" 
+                                    class="form-control @error('ingredients') is-invalid @enderror" 
+                                    id="ingredients" 
+                                    name="ingredients" 
+                                    value="{{ old('ingredients') }}"
+                                    placeholder="e.g. Chicken Breast, Fresh Garlic, Olive Oil, Salt" 
+                                    required>
+                                <div class="form-text small text-muted">Separate each ingredient with a comma ( , ) to automatically generate tags.</div>
                                 @error('ingredients')
                                     <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
