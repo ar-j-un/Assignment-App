@@ -13,7 +13,8 @@
 <div class="row">
     @forelse($recipes as $recipe)
         @php
-            $ingredientCount = count(array_filter(explode("\n", str_replace("\r", "", $recipe->ingredients))));
+            // $ingredientCount = count(array_filter(explode("\n", str_replace("\r", "", $recipe->ingredients))));
+            $ingredientCount = is_array($recipe->ingredients) ? count($recipe->ingredients) : 0;
         @endphp
 
         <div class="col-lg-4 col-md-6 mb-4">
