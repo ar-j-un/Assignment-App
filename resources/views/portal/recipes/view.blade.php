@@ -29,13 +29,33 @@
 
     <div class="card-body p-5">
         <div class="row">
-            
+
             <div class="col-md-4 mb-4 mb-md-0 border-end-md pe-md-4">
                 <h4 class="fw-bold text-success mb-3 pb-2 border-bottom">
                     <i class="fas fa-shopping-basket me-2"></i> Ingredients
                 </h4>
-                <div class="bg-light-subtle rounded p-3 text-dark">
-                    {!! nl2br(e($recipe->ingredients)) !!}
+                <div class="d-flex flex-wrap gap-2">
+                    @php
+                        $badgeColors = [
+                            'bg-primary', 
+                            'bg-success', 
+                            'bg-danger', 
+                            'bg-warning text-dark', 
+                            'bg-info text-dark', 
+                            'bg-dark', 
+                            'bg-secondary'
+                        ];
+                    @endphp
+
+                    @if(is_array($recipe->ingredients))
+                        @foreach($recipe->ingredients as $index => $ingredient)
+                            <span class="badge {{ $badgeColors[$index % count($badgeColors)] }} fs-6 px-3 py-2 rounded-pill shadow-sm">
+                                <i class="fas fa-tag me-1.5 small opacity-75"></i> {{ $ingredient }}
+                            </span>
+                        @endforeach
+                    @else
+                        <span class="text-muted">No ingredients specified.</span>
+                    @endif
                 </div>
             </div>
 
