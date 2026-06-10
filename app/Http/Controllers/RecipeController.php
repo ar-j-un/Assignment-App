@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreRecipeRequest;
 use Exception;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
@@ -37,5 +38,14 @@ class RecipeController extends Controller
             return redirect()->back()->withInput()
                 ->with('error', 'Something went wrong while saving your recipe. Please try again.');
         }
+    }
+
+    public function index(Request $request): View
+    {
+        $recipes = $request->user()->recipes()->latest()->get();
+
+        return view('portal.recipes.index', [
+            'recipes' => $recipes,
+        ]);
     }
 }
