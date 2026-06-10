@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreRecipeRequest;
+use App\Models\Recipe;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -46,6 +47,13 @@ class RecipeController extends Controller
 
         return view('portal.recipes.index', [
             'recipes' => $recipes,
+        ]);
+    }
+
+    public function view(Recipe $recipe): View
+    {
+        return view('portal.recipes.view', [
+            'recipe' => $recipe,
         ]);
     }
 }
