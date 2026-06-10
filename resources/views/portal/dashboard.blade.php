@@ -75,8 +75,25 @@
                     </a>
                 </div>
             </div>
-
-            </div>
+            @if ($user->recipes->count() > 0)
+                <div class="small-box text-bg-info p-4 rounded-3 shadow-sm position-relative overflow-hidden mb-4 animate__animated animate__fadeIn">
+                    <div class="inner pb-2">
+                        <h3 class="fw-bold fs-2 text-white mb-1">{{ $user->recipes->count() }}</h3>
+                        <p class="mb-0 text-white-50">Recipes currently published in your collection</p>
+                    </div>
+                    
+                    <div class="small-box-icon position-absolute end-0 top-0 m-3 opacity-25">
+                        <i class="fas fa-book-open fa-4x text-white"></i>
+                    </div>
+                    
+                    <div class="mt-4 pt-1">
+                        <a href="{{ route('recipes.index') }}" class="btn btn-light btn-sm fw-bold px-3 text-info shadow-sm rounded-2">
+                            <i class="fas fa-eye me-1"></i> View My Collection
+                        </a>
+                    </div>
+                </div>
+            @endif
+        </div>
     @endauth
 
     @guest
