@@ -27,6 +27,9 @@ class RecipeController extends Controller
                 $validated['recipe_image_path'] = $request->file('recipe_image')->store('recipe_images', 'public');
             }
             unset($validated['recipe_image']);
+            if (! empty($validated['ingredients'])) {
+                $validated['ingredients'] = array_filter(array_map('trim', explode(',', $validated['ingredients'])));
+            }
             $request->user()->recipes()->create($validated);
 
             return redirect()->back()->with('success', 'Recipe created successfully!');
