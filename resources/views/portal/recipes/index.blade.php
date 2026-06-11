@@ -13,7 +13,7 @@
 <div class="row">
     @forelse($recipes as $recipe)
         <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100 shadow-sm border-0 rounded-3 overflow-hidden recipe-card">
+            <div id="featured-recipe-card" class="card h-100 shadow-sm border-0 rounded-3 overflow-hidden">
                 <a href="{{ route('recipes.show', $recipe) }}" class="d-block position-relative ratio ratio-16x9">
                     <img src="{{ Storage::url($recipe->recipe_image_path) }}" 
                          alt="{{ $recipe->recipe_name }}" 
