@@ -55,6 +55,10 @@ class RecipeController extends Controller
 
     public function show(Recipe $recipe): View
     {
+        if ($recipe->user_id !== auth()->id()) {
+            abort(403, 'You are not authorized to view this recipe.');
+        }
+
         return view('portal.recipes.show', [
             'recipe' => $recipe,
         ]);
