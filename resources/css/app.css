@@ -143,10 +143,10 @@
 }
 
 /* Recipe Index Card Hover Zoom Effect */
-#featured.recipe-card .ratio img {
+[id^="recipe-card-"] .ratio img {
     transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-#featured.recipe-card:hover img {
+[id^="recipe-card-"]:hover img {
     transform: scale(1.06);
 }
