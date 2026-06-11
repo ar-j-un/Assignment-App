@@ -11,8 +11,7 @@ import {
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { useIsMobile } from '@/hooks/use-mobile';
-// import { switchMethod } from '@/routes/teams';
-const switchMethod = () => '#';
+import { switchMethod } from '@/routes/teams';
 import type { Team } from '@/types';
 
 type TeamSwitcherProps = {
