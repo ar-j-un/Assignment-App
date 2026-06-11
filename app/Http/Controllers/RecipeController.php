@@ -32,7 +32,7 @@ class RecipeController extends Controller
             }
             $request->user()->recipes()->create($validated);
 
-            return redirect()->back()->with('success', 'Recipe created successfully!');
+            return redirect()->route('recipes.index')->with('success', 'Recipe created successfully!');
         } catch (Exception $err) {
             Log::error('Recipe Creation Failed: '.$err->getMessage());
             if (isset($validated['recipe_image_path']) && Storage::disk('public')->exists($validated['recipe_image_path'])) {
