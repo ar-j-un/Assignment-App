@@ -52,8 +52,8 @@
                             />
 
                             <div class="mb-4">
-                                <label for="recipe_image" class="form-label fw-semibold">Recipe Image <span class="text-danger">*</span></label>
-                                <input class="form-control @error('recipe_image') is-invalid @enderror" type="file" id="recipe_image" name="recipe_image" accept="image/*" required>
+                                <label for="recipe-image" class="form-label fw-semibold">Recipe Image <span class="text-danger">*</span></label>
+                                <input class="form-control @error('recipe_image') is-invalid @enderror" type="file" id="recipe-image" name="recipe_image" accept="image/*" required>
                                 <div class="form-text small">Upload a beautiful photo of the finished dish.</div>
                                 @error('recipe_image')
                                     <div class="invalid-feedback d-block">{{ $message }}</div>
