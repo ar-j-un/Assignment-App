@@ -43,19 +43,24 @@
                             </div>
                         </div>
                         <div class="col-md-7 ps-md-4">
-
                             <div class="mb-3">
                                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select@2.6.1/dist/css/tom-select.bootstrap5.min.css" />
                                 <script src="https://cdn.jsdelivr.net/npm/tom-select@2.6.1/dist/js/tom-select.complete.min.js"></script>
-
                                 <label for="ingredients" class="form-label fw-semibold">Ingredients <span class="text-danger">*</span></label>
-                                <select name="ingredients" id="ingredients" class="form-control @error('ingredients') is-invalid @enderror" multiple placeholder="e.g. Chicken Breast, Fresh Garlic, Olive Oil, Salt" value="{{ old('ingredients') }}" required>
-                                <option value="chicken">Chicken</option>
-                                <option value="onion">Onion</option>
-                                <option value="water">Water</option>
-                                </select>
+                                <input type="text" 
+                                    class="form-control @error('ingredients') is-invalid @enderror" 
+                                    id="ingredients" 
+                                    name="ingredients" 
+                                    value="{{ old('ingredients') }}"
+                                    placeholder="e.g. Chicken Breast, Fresh Garlic, Olive Oil, Salt" 
+                                    required>
                                 <script>
-                                new TomSelect("#ingredients", { plugins: ["remove_button"] })
+                                new TomSelect("#ingredients", { plugins: ["remove_button"], persist: false, create: true, createOnBlur: true, delimiter: ",", maxOptions: 0, 
+                                    render: {
+                                        no_results: () => '',
+                                        option_create: () => '',
+                                    }
+                                });
                                 </script>
                                 @error('ingredients')
                                     <div class="invalid-feedback d-block">{{ $message }}</div>
