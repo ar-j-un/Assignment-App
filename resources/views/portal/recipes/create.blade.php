@@ -5,21 +5,6 @@
 @section('content')
 <div class="row justify-content-center">
     <div class="col-lg-10">
-
-        @if (session('success'))
-            <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
-                <i class="fas fa-check-circle me-2"></i> {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
-
-        @if (session('error'))
-            <div class="alert alert-danger alert-dismissible fade show shadow-sm" role="alert">
-                <i class="fas fa-exclamation-triangle me-2"></i> {{ session('error') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
-
         <div class="card card-primary card-outline shadow-sm border-0">
             <div class="card-header bg-light-subtle py-3">
                 <h3 class="card-title mb-0 fw-bold text-secondary">
@@ -40,7 +25,6 @@
                                 placeholder="e.g., Spicy Basil Chicken" 
                                 required 
                             />
-
                             <x-form.input 
                                 name="cooking_time" 
                                 label="Cooking Time (Minutes)" 
@@ -50,7 +34,6 @@
                                 icon="fas fa-clock"
                                 required 
                             />
-
                             <div class="mb-4">
                                 <label for="recipe-image" class="form-label fw-semibold">Recipe Image <span class="text-danger">*</span></label>
                                 <input class="form-control @error('recipe_image') is-invalid @enderror" type="file" id="recipe-image" name="recipe_image" accept="image/*" required>
@@ -59,21 +42,58 @@
                                     <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
                             </div>
-
                         </div>
 
                         <div class="col-md-7 ps-md-4">
-                            
-                            <div class="mb-3">
-                                <label for="ingredients" class="form-label fw-semibold">Ingredients <span class="text-danger">*</span></label>
-                                <input type="text" 
-                                    class="form-control @error('ingredients') is-invalid @enderror" 
-                                    id="ingredients" 
-                                    name="ingredients" 
-                                    value="{{ old('ingredients') }}"
-                                    placeholder="e.g. Chicken Breast, Fresh Garlic, Olive Oil, Salt" 
-                                    required>
-                                <div class="form-text small text-muted">Separate each ingredient with a comma ( , ) to automatically generate tags.</div>
+                           <div class="mb-3" 
+                                x-data="{ 
+                                    tags: {{ old('ingredients') ? json_encode(array_filter(array_map('trim', explode(',', old('ingredients'))))) : '[]' }}, 
+                                    newTag: '',
+                                    colors: ['bg-primary', 'bg-success', 'bg-danger', 'bg-warning text-dark', 'bg-info text-dark', 'bg-dark', 'bg-secondary'],
+                                    
+                                    addTag() {
+                                        let clean = this.newTag.trim().replace(/,/g, '');
+                                        if (clean && !this.tags.includes(clean)) {
+                                            this.tags.push(clean);
+                                        }
+                                        this.newTag = '';
+                                    },
+                                    removeTag(index) {
+                                        this.tags.splice(index, 1);
+                                    }
+                                }">
+                                
+                                <label for="ingredient-input" class="form-label fw-semibold">Ingredients <span class="text-danger">*</span></label>
+                                
+                                <div class="form-control h-auto d-flex flex-wrap gap-2 align-items-center @error('ingredients') is-invalid @enderror" 
+                                    @click="$refs.tagInput.focus()" 
+                                    style="min-height: 38px; cursor: text;">
+                                    
+                                    <template x-for="(tag, index) in tags" :key="index">
+                                        <span :class="'ingredient-tag badge d-flex align-items-center px-2 py-1 fs-7 ' + colors[index % colors.length]">
+                                            <span class="me-2" x-text="tag"></span>
+                                            <button type="button" 
+                                                    :class="'btn-close ' + (colors[index % colors.length].includes('bg-warning') ? '' : 'btn-close-white')" 
+                                                    style="font-size: 0.45rem;" 
+                                                    @click.stop="removeTag(index)" 
+                                                    aria-label="Remove"></button>
+                                        </span>
+                                    </template>
+
+                                    <input type="text" 
+                                        x-ref="tagInput"
+                                        x-model="newTag" 
+                                        @keydown.enter.prevent="addTag()"
+                                        @keydown.comma.prevent="addTag()"
+                                        @keydown.backspace="if (newTag === '' && tags.length > 0) removeTag(tags.length - 1)"
+                                        class="border-0 shadow-none flex-grow-1" 
+                                        style="outline: none; min-width: 150px; background: transparent;" 
+                                        placeholder="e.g. Chicken, Garlic, Olive Oil...">
+                                </div>
+
+                                <input type="hidden" name="ingredients" :value="tags.join(',')">
+
+                                <div class="form-text small text-muted">Press <strong>Enter</strong> or type a <strong>comma ( , )</strong> to create a tag.</div>
                                 @error('ingredients')
                                     <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
@@ -94,11 +114,9 @@
                                     <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
                             </div>
-
                         </div>
                     </div>
                 </div> 
-                
                 <div class="card-footer bg-light-subtle d-flex justify-content-end py-3 px-4">
                     <button type="reset" class="btn btn-secondary me-2 fw-bold px-4 shadow-sm">Reset</button>
                     <button type="submit" class="btn btn-primary fw-bold px-4 shadow-sm">
