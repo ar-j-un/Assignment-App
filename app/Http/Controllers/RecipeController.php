@@ -6,6 +6,7 @@ use App\Http\Requests\StoreRecipeRequest;
 use App\Http\Requests\UpdateRecipeRequest;
 use App\Models\Recipe;
 use Exception;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -110,5 +111,15 @@ class RecipeController extends Controller
                 ->withInput()
                 ->with('error', 'Something went wrong while updating your recipe. Please try again.');
         }
+    }
+
+    public function destroy(Recipe $recipe): JsonResponse
+    {
+        $recipe->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Recipe deleted successfully.',
+        ]);
     }
 }
