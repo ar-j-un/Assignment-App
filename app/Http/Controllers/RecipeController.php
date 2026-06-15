@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreRecipeRequest;
+use App\Http\Requests\UpdateRecipeRequest;
 use App\Models\Recipe;
 use Exception;
 use Illuminate\Http\RedirectResponse;
@@ -73,5 +74,41 @@ class RecipeController extends Controller
         return view('portal.recipes.edit', [
             'recipe' => $recipe,
         ]);
+    }
+
+    public function update(UpdateRecipeRequest $request, Recipe $recipe): RedirectResponse
+    {
+        $validated = $request->validated();
+        try {
+            if (! empty($validated['ingredients'])) {
+                $validated['ingredients'] = array_filter(
+                    array_map('trim', explode(',', $validated['ingredients']))
+                );
+            }
+            if ($request->hasFile('recipe_image')) {
+                $validated['recipe_image_path'] = $request->file('recipe_image')->store('recipe_images', 'public');
+                if ($recipe->recipe_image_path &&
+                    Storage::disk('public')->exists($recipe->recipe_image_path)) {
+                    Storage::disk('public')->delete($recipe->recipe_image_path);
+                }
+            }
+            unset($validated['recipe_image']);
+            $recipe->update($validated);
+
+            return redirect()
+                ->route('recipes.show', $recipe)
+                ->with('success', 'Recipe updated successfully!');
+        } catch (Exception $err) {
+            Log::error('Recipe Update Failed: '.$err->getMessage());
+            if (isset($newImagePath) &&
+                Storage::disk('public')->exists($newImagePath)) {
+                Storage::disk('public')->delete($newImagePath);
+            }
+
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('error', 'Something went wrong while updating your recipe. Please try again.');
+        }
     }
 }
