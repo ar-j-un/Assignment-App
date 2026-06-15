@@ -6,8 +6,8 @@
 <div class="row">
     
     @auth
-        <div class="col-lg-6 col-md-8 mx-auto">
-            <div class="card card-primary card-outline shadow-sm">
+        <div class="col-lg-7 col-md-6 mb-4  ">
+            <div class="card card-primary card-outline shadow-sm h-100">
                 <div class="card-header">
                     <h3 class="card-title fw-bold m-0 text-primary">
                         <i class="fas fa-user-shield me-2"></i> My Profile Details
@@ -51,11 +51,48 @@
                 
                 <div class="card-footer bg-light-subtle d-flex justify-content-between align-items-center p-3">
                     <span class="text-muted small">Joined {{ $user->created_at->format('M d, Y') }}</span>
-                    <a href="{{ route('profile') }}" class="btn btn-outline-primary btn-sm fw-semibold shadow-sm" style="margin-left: -55px;">
+                    <a href="{{ route('profile') }}" class="btn btn-outline-primary btn-sm fw-semibold shadow-sm" style="margin-left: -75px;">
                         View Full Profile <i class="fas fa-arrow-right ms-1"></i>
                     </a>
                 </div>
             </div>
+        </div>
+        <div class="col-lg-5 col-md-6 mb-4">
+            
+            <div class="small-box text-bg-success p-4 rounded-3 shadow-sm position-relative overflow-hidden mb-4">
+                <div class="inner pb-2">
+                    <h3 class="fw-bold fs-2 text-white mb-1">Create Recipe</h3>
+                    <p class="mb-0 text-white-50">Publish and share a new culinary masterpiece step-by-step!</p>
+                </div>
+                
+                <div class="small-box-icon position-absolute end-0 top-0 m-3 opacity-25">
+                    <i class="fas fa-utensils fa-4x text-white"></i>
+                </div>
+                
+                <div class="mt-4 pt-1">
+                    <a href="{{ route('recipes.create') }}" class="btn btn-light btn-sm fw-bold px-3 text-success shadow-sm rounded-2">
+                        <i class="fas fa-plus-circle me-1"></i> Add Recipe Now
+                    </a>
+                </div>
+            </div>
+            @if ($user->recipes->count() > 0)
+                <div class="small-box text-bg-info p-4 rounded-3 shadow-sm position-relative overflow-hidden mb-4 animate__animated animate__fadeIn">
+                    <div class="inner pb-2">
+                        <h3 class="fw-bold fs-2 text-white mb-1">{{ $user->recipes->count() }}</h3>
+                        <p class="mb-0 text-white-50">Recipes currently published in your collection</p>
+                    </div>
+                    
+                    <div class="small-box-icon position-absolute end-0 top-0 m-3 opacity-25">
+                        <i class="fas fa-book-open fa-4x text-white"></i>
+                    </div>
+                    
+                    <div class="mt-4 pt-1">
+                        <a href="{{ route('recipes.index') }}" class="btn btn-light btn-sm fw-bold px-3 text-info shadow-sm rounded-2">
+                            <i class="fas fa-eye me-1"></i> View My Collection
+                        </a>
+                    </div>
+                </div>
+            @endif
         </div>
     @endauth
 
