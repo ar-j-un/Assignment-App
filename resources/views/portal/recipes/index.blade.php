@@ -41,6 +41,9 @@
                     <a href="{{ route('recipes.show', $recipe) }}" class="btn btn-outline-primary btn-sm fw-bold mt-3 stretched-link">
                         View Recipe <i class="fas fa-arrow-right ms-1"></i>
                     </a>
+                    <a href="#" id="delete-recipe" data-url="{{ route('recipes.destroy', $recipe) }}" class="btn btn-danger btn-sm fw-bold mt-3 position-relative" style="z-index: 2;">
+                        Delete Recipe <i class="delete-recipe fas fa-trash me-1 px-2"></i>
+                    </a>
                 </div>
             </div>
         </div>
