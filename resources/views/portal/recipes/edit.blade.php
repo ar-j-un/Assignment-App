@@ -92,7 +92,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="additional_notes" class="form-label fw-semibold">Additional Notes (Optional)</label>
-                                <textarea class="form-control @error('additional_notes') is-invalid @enderror" id="additional_notes" name="additional_notes" rows="2" required>{{ old('additional_notes', $recipe->additional_notes) }}</textarea>
+                                <textarea class="form-control @error('additional_notes') is-invalid @enderror" id="additional_notes" name="additional_notes" rows="2">{{ old('additional_notes', $recipe->additional_notes) }}</textarea>
                                 @error('additional_notes')
                                     <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
