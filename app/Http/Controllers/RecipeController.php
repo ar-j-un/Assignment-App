@@ -63,4 +63,15 @@ class RecipeController extends Controller
             'recipe' => $recipe,
         ]);
     }
+
+    public function edit(Recipe $recipe): View
+    {
+        if ($recipe->user_id !== auth()->id()) {
+            abort(403, 'You are not authorized to view this recipe.');
+        }
+
+        return view('portal.recipes.edit', [
+            'recipe' => $recipe,
+        ]);
+    }
 }
