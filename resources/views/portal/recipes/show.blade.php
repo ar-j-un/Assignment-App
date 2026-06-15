@@ -66,7 +66,7 @@
 
             <div class="col-md-8 ps-md-4">
                 <h4 class="fw-bold text-primary mb-3 pb-2 border-bottom">
-                    <i class="fas fa-list-ol me-2"></i> Instructions
+                    <i class="fas fa-list-ol me-2"></i> Steps
                 </h4>
                 <div class="text-dark fs-5 mb-4" style="line-height: 1.8;">
                     {!! nl2br(e($recipe->steps)) !!}
