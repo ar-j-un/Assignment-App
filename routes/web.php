@@ -20,5 +20,5 @@ Route::get('/profile', [ProfileController::class, 'view'])->name('profile')->mid
 Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update')->middleware('auth');
 
 Route::resource('recipes', RecipeController::class)
-    ->only(['index', 'create', 'store', 'show', 'edit'])
+    ->only(['index', 'create', 'store', 'show', 'edit', 'update'])
     ->middleware('auth');
