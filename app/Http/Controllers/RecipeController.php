@@ -81,11 +81,8 @@ class RecipeController extends Controller
     {
         $validated = $request->validated();
         try {
-            if (! empty($validated['ingredients'])) {
-                $validated['ingredients'] = array_filter(
-                    array_map('trim', explode(',', $validated['ingredients']))
-                );
-            }
+            $validated['ingredients'] = array_filter(array_map('trim', explode(',', $validated['ingredients']))
+            );
             if ($request->hasFile('recipe_image')) {
                 $validated['recipe_image_path'] = $request->file('recipe_image')->store('recipe_images', 'public');
                 if ($recipe->recipe_image_path &&
