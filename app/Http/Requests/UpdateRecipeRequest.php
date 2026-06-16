@@ -12,7 +12,7 @@ class UpdateRecipeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return $this->route('recipe')?->user_id === auth()->id();
     }
 
     /**
