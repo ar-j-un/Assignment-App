@@ -41,9 +41,15 @@
                     <a href="{{ route('recipes.show', $recipe) }}" class="btn btn-outline-primary btn-sm fw-bold mt-3 stretched-link">
                         View Recipe <i class="fas fa-arrow-right ms-1"></i>
                     </a>
-                    <a href="#" data-url="{{ route('recipes.destroy', $recipe) }}" class="delete-recipe btn btn-danger btn-sm fw-bold mt-3 position-relative" style="z-index: 2;">
+
+                    <button
+                        type="button"
+                        class="delete-recipe btn btn-danger btn-sm fw-bold mt-3 position-relative"
+                        data-recipe-id="{{ $recipe->id }}"
+                        style="z-index: 2;"
+                    >
                         Delete Recipe <i class="fas fa-trash me-1 px-2"></i>
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
@@ -60,33 +66,30 @@
         </div>
     @endforelse
 </div>
+@push('scripts')
 <script>
-document.addEventListener('click', async function (e) {
-    try {
-    const button = e.target.closest('.delete-recipe');
-     if (!button) {
+$(document).on('click', '.delete-recipe', function () {
+    if (!confirm('Delete this recipe?')) {
         return;
     }
-    e.preventDefault();
-    if (!confirm('Are you sure you want to delete this recipe?')) {
-        return;
-    }
-    const response = await fetch(button.dataset.url, {
-        method: 'DELETE',
-        headers: {
-            'X-CSRF-TOKEN': '{{ csrf_token() }}',
-            'Accept': 'application/json',
+    const recipeId = $(this).data('recipe-id');
+    $.ajax({
+        url: `/recipes/${recipeId}`,
+        type: 'DELETE',
+        data: {
+            _token: '{{ csrf_token() }}'
+        },
+        success: function (response) {
+
+            if (response.success) {
+                $(`#recipe-card-${response.recipe_id}`).remove();
+            }
+        },
+        error: function () {
+            alert('Failed to delete recipe.');
         }
     });
-    const data = await response.json();
-    if (data.success) {
-        button.closest('.col-lg-4').remove();
-    } else {
-        alert('Failed to delete recipe.');
-    }
-    } catch (error) {
-    console.error(error);
-}
 });
 </script>
+@endpush
 @endsection
