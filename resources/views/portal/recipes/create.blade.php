@@ -54,14 +54,6 @@
                                     value="{{ old('ingredients') }}"
                                     placeholder="e.g. Chicken Breast, Fresh Garlic, Olive Oil, Salt" 
                                     required>
-                                <script>
-                                new TomSelect("#ingredients", { plugins: ["remove_button"], persist: false, create: true, createOnBlur: true, delimiter: ",", maxOptions: 0, 
-                                    render: {
-                                        no_results: () => '',
-                                        option_create: () => '',
-                                    }
-                                });
-                                </script>
                                 @error('ingredients')
                                     <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
@@ -93,4 +85,20 @@
         </div>
     </div>
 </div>
+@push('scripts')
+<script>
+    new TomSelect('#ingredients', {
+        plugins: ['remove_button'],
+        persist: false,
+        create: true,
+        createOnBlur: true,
+        delimiter: ',',
+        maxOptions: 0,
+        render: {
+            no_results: () => '',
+            option_create: () => '',
+        }
+    });
+</script>
+@endpush
 @endsection
