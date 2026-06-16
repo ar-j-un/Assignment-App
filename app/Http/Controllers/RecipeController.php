@@ -113,6 +113,9 @@ class RecipeController extends Controller
 
     public function destroy(Recipe $recipe): JsonResponse
     {
+        if ($recipe->user_id !== auth()->id()) {
+            abort(403, 'You are not authorized to view this recipe.');
+        }
         $recipe->delete();
 
         return response()->json([
