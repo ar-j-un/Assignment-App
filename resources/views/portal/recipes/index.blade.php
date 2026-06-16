@@ -41,8 +41,8 @@
                     <a href="{{ route('recipes.show', $recipe) }}" class="btn btn-outline-primary btn-sm fw-bold mt-3 stretched-link">
                         View Recipe <i class="fas fa-arrow-right ms-1"></i>
                     </a>
-                    <a href="#" id="delete-recipe" data-url="{{ route('recipes.destroy', $recipe) }}" class="btn btn-danger btn-sm fw-bold mt-3 position-relative" style="z-index: 2;">
-                        Delete Recipe <i class="delete-recipe fas fa-trash me-1 px-2"></i>
+                    <a href="#" data-url="{{ route('recipes.destroy', $recipe) }}" class="delete-recipe btn btn-danger btn-sm fw-bold mt-3 position-relative" style="z-index: 2;">
+                        Delete Recipe <i class="fas fa-trash me-1 px-2"></i>
                     </a>
                 </div>
             </div>
@@ -60,5 +60,33 @@
         </div>
     @endforelse
 </div>
-
+<script>
+document.addEventListener('click', async function (e) {
+    try {
+    const button = e.target.closest('.delete-recipe');
+     if (!button) {
+        return;
+    }
+    e.preventDefault();
+    if (!confirm('Are you sure you want to delete this recipe?')) {
+        return;
+    }
+    const response = await fetch(button.dataset.url, {
+        method: 'DELETE',
+        headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+            'Accept': 'application/json',
+        }
+    });
+    const data = await response.json();
+    if (data.success) {
+        button.closest('.col-lg-4').remove();
+    } else {
+        alert('Failed to delete recipe.');
+    }
+    } catch (error) {
+    console.error(error);
+}
+});
+</script>
 @endsection
