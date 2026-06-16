@@ -121,6 +121,7 @@ class RecipeController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Recipe deleted successfully.',
+            'recipe_id' => $recipe->id,
         ]);
     }
 }
