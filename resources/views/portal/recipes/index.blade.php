@@ -82,7 +82,7 @@ $(document).on('click', '.delete-recipe', function () {
         success: function (response) {
 
             if (response.success) {
-                $(`#recipe-card-${response.recipe_id}`).remove();
+                $(`#recipe-card-${recipeId}`).remove();
             }
         },
         error: function () {
