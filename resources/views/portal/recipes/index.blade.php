@@ -81,10 +81,7 @@ $(document).on('click', '.delete-recipe', function () {
             _token: '{{ csrf_token() }}'
         },
         success: function (response) {
-
-            if (response.success) {
                 $(`#recipe-card-${recipeId}`).remove();
-            }
         },
         error: function () {
             alert('Failed to delete recipe.');
