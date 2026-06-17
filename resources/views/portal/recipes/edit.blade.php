@@ -62,8 +62,6 @@
                         </div>
                         <div class="col-md-7 ps-md-4">
                             <div class="mb-3">
-                                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select@2.6.1/dist/css/tom-select.bootstrap5.min.css" />
-                                <script src="https://cdn.jsdelivr.net/npm/tom-select@2.6.1/dist/js/tom-select.complete.min.js"></script>
                                 <label for="ingredients" class="form-label fw-semibold">Ingredients <span class="text-danger">*</span></label>
                                 <input type="text" 
                                     class="form-control @error('ingredients') is-invalid @enderror" 
@@ -71,14 +69,6 @@
                                     name="ingredients" 
                                     value="{{ old('ingredients', implode(',', $recipe->ingredients ?? [])) }}" 
                                     required>
-                                <script>
-                                new TomSelect("#ingredients", { plugins: ["remove_button"], persist: false, create: true, createOnBlur: true, delimiter: ",", maxOptions: 0, 
-                                    render: {
-                                        no_results: () => '',
-                                        option_create: () => '',
-                                    }
-                                });
-                                </script>
                                 @error('ingredients')
                                     <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
@@ -110,4 +100,44 @@
         </div>
     </div>
 </div>
+@push('styles')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select@2.6.1/dist/css/tom-select.bootstrap5.min.css">
+@endpush
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/tom-select@2.6.1/dist/js/tom-select.complete.min.js"></script>
+<script>
+    const badgeColors = [
+                            'bg-primary', 
+                            'bg-success', 
+                            'bg-danger', 
+                            'bg-warning text-dark', 
+                            'bg-info text-dark', 
+                            'bg-dark', 
+                            'bg-secondary'
+                        ];
+    new TomSelect('#ingredients', {
+        plugins: ['remove_button'],
+        persist: false,
+        create: true,
+        createOnBlur: true,
+        delimiter: ',',
+        maxOptions: 0,
+        render: {
+            no_results: () => '',
+            option_create: () => '',
+        },
+        onItemAdd(value, item) {
+        const colorClass =badgeColors[Math.floor(Math.random() * badgeColors.length)];
+
+        item.classList.add(colorClass);
+        item.classList.add('rounded-pill');
+        if (['bg-warning', 'bg-info'].includes(colorClass)) {
+            item.classList.add('text-dark');
+        } else {
+            item.classList.add('text-white');
+        }
+    }
+    });
+</script>
+@endpush
 @endsection
