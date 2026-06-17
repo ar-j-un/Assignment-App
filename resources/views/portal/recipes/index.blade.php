@@ -73,8 +73,9 @@ $(document).on('click', '.delete-recipe', function () {
         return;
     }
     const recipeId = $(this).data('recipe-id');
+    const url = "{{ route('recipes.destroy', ':id') }}".replace(':id', recipeId);
     $.ajax({
-        url: `/recipes/${recipeId}`,
+        url: url,
         type: 'DELETE',
         data: {
             _token: '{{ csrf_token() }}'
