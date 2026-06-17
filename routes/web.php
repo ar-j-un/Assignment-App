@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', DashboardController::class)->name('dashboard');
@@ -18,6 +19,8 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->midd
 
 Route::get('/profile', [ProfileController::class, 'view'])->name('profile')->middleware('auth');
 Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update')->middleware('auth');
+
+Route::get('/users', [UserController::class, 'view'])->name('users');
 
 Route::resource('recipes', RecipeController::class)
     ->only(['index', 'create', 'store', 'show'])
