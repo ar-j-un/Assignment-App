@@ -60,14 +60,14 @@
         <script src="https://cdn.datatables.net/2.3.8/js/dataTables.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-            $('.datatable'). DataTable({
+            const table = $('.datatable'). DataTable({
                 serverSide: true,
                 processing: true,
                 ajax: {
                     url: '{{ route("users.index") }}'
                 },
                 columns: [
-                    { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable:false, searchable: false },
+                    { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
                     { data: 'name', name: 'name'},
                     { data: 'email', name: 'email'},
                     { data: 'phone_number', name: 'phone_number'},
@@ -75,9 +75,41 @@
                     { data: 'department', name: 'department'},
                     { data: 'designation', name: 'designation'},
                     { data: 'created_at', name: 'created_at'},
-                    { data: 'action', name: 'action', orderable:false, searchable: false }
+                    { data: 'action', name: 'action', orderable: false, searchable: false }
 
                 ]
+            });
+            $('table').on('click', '.delete-user', function () {
+
+                const userId = $(this).data('id');
+
+                if (!userId) {
+                    return;
+                }
+                if (!confirm('Are you sure you want to delete?')) {
+                    return;
+                }
+
+                $.ajax({
+                    url: `{{ url('users/delete') }}/${userId}`,
+                    method: 'DELETE',
+                    data: {
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function (response) {
+
+                        if (response.status === 'success') {
+                            table.ajax.reload(null, false);
+                        } else {
+                            alert(response.message);
+                        }
+
+                    },
+                    error: function () {
+                        alert('Something went wrong!');
+                    }
+                });
+
             });
             });
         </script>
