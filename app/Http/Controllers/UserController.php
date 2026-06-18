@@ -20,7 +20,7 @@ class UserController extends Controller
                 })
                 ->addColumn('action', function ($user) {
                     return '
-                        <a href="'.route('user.edit', $user->id).'" class="btn btn-success btn-sm">Edit</a>
+                        <a href="'.route('users.edit', $user->id).'" class="btn btn-success btn-sm">Edit</a>
                         <button data-id="'.$user->id.'" class="btn btn-danger btn-sm delete-user">Delete</button>
                     ';
                 })
@@ -28,5 +28,31 @@ class UserController extends Controller
         }
 
         return view('users');
+    }
+
+    /**
+     * Function: edit
+     * Description: Edit User
+     *
+     * @param  int  $id
+     * @return void
+     */
+    public function edit($id)
+    {
+        $user = User::findOrFail($id);
+        dd($user);
+    }
+
+    /**
+     * Function: destroy
+     * Description: Delete User
+     *
+     * @param  int  $id
+     * @return void
+     */
+    public function destroy($id)
+    {
+        $user = User::findOrFail($id);
+        dd($user);
     }
 }
