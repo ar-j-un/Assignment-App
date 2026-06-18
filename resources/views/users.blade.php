@@ -20,6 +20,7 @@
                     <table class="table table-striped datatable">
                         <thead>
                             <tr>
+                                <th>SL.</th> 
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Phone Number</th>
@@ -66,6 +67,7 @@
                     url: '{{ route("users.index") }}'
                 },
                 columns: [
+                    { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable:false, searchable: false },
                     { data: 'name', name: 'name'},
                     { data: 'email', name: 'email'},
                     { data: 'phone_number', name: 'phone_number'},
@@ -73,7 +75,7 @@
                     { data: 'department', name: 'department'},
                     { data: 'designation', name: 'designation'},
                     { data: 'created_at', name: 'created_at'},
-                    { data: 'action', name: 'action'}
+                    { data: 'action', name: 'action', orderable:false, searchable: false }
 
                 ]
             });
