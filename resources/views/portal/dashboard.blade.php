@@ -121,7 +121,7 @@
                     <i class="fas fa-user-shield fa-4x text-white"></i>
                 </div>
             <div class="mt-4 pt-1">
-                <a href="{{ route('users') }}" class="btn btn-light btn-sm fw-bold px-3 text-warning shadow-sm rounded-2">
+                <a href="{{ route('users.index') }}" class="btn btn-light btn-sm fw-bold px-3 text-warning shadow-sm rounded-2">
                     <i class="fas fa-eye me-1"></i> View All Users
                 </a>
             </div>
