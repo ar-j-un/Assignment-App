@@ -21,6 +21,8 @@ Route::get('/profile', [ProfileController::class, 'view'])->name('profile')->mid
 Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update')->middleware('auth');
 
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
+Route::get('/users/edit/{id}', [UserController::class, 'edit'])->name('users.edit');
+Route::get('/users/delete/{id}', [UserController::class, 'destroy'])->name('users.destroy');
 
 Route::resource('recipes', RecipeController::class)
     ->only(['index', 'create', 'store', 'show'])
