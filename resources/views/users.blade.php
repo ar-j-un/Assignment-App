@@ -27,6 +27,7 @@
                                 <th>Department</th>
                                 <th>Designation</th>
                                 <th>Created At</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         {{-- <tbody>
@@ -72,6 +73,7 @@
                     { data: 'department', name: 'department'},
                     { data: 'designation', name: 'designation'},
                     { data: 'created_at', name: 'created_at'},
+                    { data: 'action', name: 'action'}
 
                 ]
             });
