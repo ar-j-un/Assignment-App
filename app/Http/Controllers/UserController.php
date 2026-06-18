@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 class UserController extends Controller
 {
-    public function view()
+    public function index()
     {
         return view('users');
     }

@@ -20,7 +20,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->midd
 Route::get('/profile', [ProfileController::class, 'view'])->name('profile')->middleware('auth');
 Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update')->middleware('auth');
 
-Route::get('/users', [UserController::class, 'view'])->name('users');
+Route::get('/users', [UserController::class, 'index'])->name('users.index');
 
 Route::resource('recipes', RecipeController::class)
     ->only(['index', 'create', 'store', 'show'])
