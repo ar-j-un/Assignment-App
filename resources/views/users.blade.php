@@ -25,10 +25,29 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Phone Number</th>
+                                <th>Age</th>
+                                <th>Department</th>
+                                <th>Designation</th>
                                 <th>Created At</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @forelse ($users as $user)
+                                <tr>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $user->phone_number }}</td>
+                                    <td>{{ $user->age }}</td>
+                                    <td>{{ $user->department }}</td>
+                                    <td>{{ $user->designation }}</td>
+                                    <td>{{ $user->created_at }}</td>
+                                </tr>
+                                
+                            @empty
+                                <tr>
+                                    <td colspan="7"> No Data Found </td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                     </div>
