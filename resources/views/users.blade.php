@@ -29,7 +29,7 @@
                                 <th>Created At</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        {{-- <tbody>
                             @forelse ($users as $user)
                                 <tr>
                                     <td>{{ $user->name }}</td>
@@ -46,7 +46,7 @@
                                     <td colspan="7"> No Data Found </td>
                                 </tr>
                             @endforelse
-                        </tbody>
+                        </tbody> --}}
                     </table>
                     </div>
                 </div>
@@ -58,7 +58,23 @@
         <script src="https://cdn.datatables.net/2.3.8/js/dataTables.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-            $('.datatable'). DataTable();
+            $('.datatable'). DataTable({
+                serverSide: true,
+                processing: true,
+                ajax: {
+                    url: '{{ route("users.index") }}'
+                },
+                columns: [
+                    { data: 'name', name: 'name'},
+                    { data: 'email', name: 'email'},
+                    { data: 'phone_number', name: 'phone_number'},
+                    { data: 'age', name: 'age'},
+                    { data: 'department', name: 'department'},
+                    { data: 'designation', name: 'designation'},
+                    { data: 'created_at', name: 'created_at'},
+
+                ]
+            });
             });
         </script>
     </body>
