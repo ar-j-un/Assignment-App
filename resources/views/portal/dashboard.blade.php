@@ -94,7 +94,7 @@
                 </div>
             @endif
         </div>
-        @if (auth()->user()->id === 1)
+        @can('admin')   
         <div class="small-box text-bg-warning p-20 rounded-3 shadow-sm position-relative overflow-hidden mb-4 animate__animated animate__fadeIn">
             <div class="inner pb-2">
                 <div class="small-box-icon position-absolute end-0 top-0 m-3 opacity-25">
@@ -107,7 +107,7 @@
             </div>
             </div>
         </div>
-        @endif
+        @endcan
     @endauth
 
     @guest
