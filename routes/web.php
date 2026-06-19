@@ -20,10 +20,10 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->midd
 Route::get('/profile', [ProfileController::class, 'view'])->name('profile')->middleware('auth');
 Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update')->middleware('auth');
 
-Route::get('/users', [UserController::class, 'index'])->name('users.index');
-Route::get('/users/edit/{id}', [UserController::class, 'edit'])->name('users.edit');
-Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
-Route::delete('/users/delete/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+Route::get('/users', [UserController::class, 'index'])->name('users.index')->can('admin');
+Route::get('/users/edit/{id}', [UserController::class, 'edit'])->name('users.edit')->can('admin');
+Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update')->can('admin');
+Route::delete('/users/delete/{id}', [UserController::class, 'destroy'])->name('users.destroy')->can('admin');
 
 Route::resource('recipes', RecipeController::class)
     ->only(['index', 'create', 'store', 'show'])
