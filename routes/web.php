@@ -22,6 +22,7 @@ Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.up
 
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 Route::get('/users/edit/{id}', [UserController::class, 'edit'])->name('users.edit');
+Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
 Route::delete('/users/delete/{id}', [UserController::class, 'destroy'])->name('users.destroy');
 
 Route::resource('recipes', RecipeController::class)
