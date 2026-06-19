@@ -22,43 +22,73 @@
                     <label>Name</label>
                     <input type="text"
                            name="name"
-                           class="form-control"
-                           value="{{ $user->name }}">
+                           class="form-control @error('name') is-invalid @enderror"
+                           value="{{ old('name', $user->name) }}">
+                           @error('name')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                 </div>
                 <div class="mb-3">
                     <label>Email</label>
                     <input type="email"
                            name="email"
-                           class="form-control"
-                           value="{{ $user->email }}">
+                           class="form-control @error('email') is-invalid @enderror"
+                           value="{{ old('email', $user->email) }}">
+                           @error('email')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                 </div>
                 <div class="mb-3">
                     <label>Phone Number</label>
                     <input type="text"
                            name="phone_number"
-                           class="form-control"
-                           value="{{ $user->phone_number }}">
+                           class="form-control @error('phone_number') is-invalid @enderror"
+                           value="{{ old('phone_number', $user->phone_number) }}">
+                           @error('phone_number')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                 </div>
                 <div class="mb-3">
                     <label>Age</label>
                     <input type="number"
                            name="age"
-                           class="form-control"
-                           value="{{ $user->age }}">
+                           class="form-control @error('age') is-invalid @enderror"
+                           value="{{ old('age', $user->age) }}">
+                           @error('age')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                 </div>
                 <div class="mb-3">
                     <label>Department</label>
                     <input type="text"
                            name="department"
-                           class="form-control"
-                           value="{{ $user->department }}">
+                           class="form-control @error('department') is-invalid @enderror"
+                           value="{{ old('department', $user->department) }}">
+                           @error('department')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                 </div>
                 <div class="mb-3">
                     <label>Designation</label>
                     <input type="text"
                            name="designation"
-                           class="form-control"
-                           value="{{ $user->designation }}">
+                           class="form-control @error('designation') is-invalid @enderror"
+                           value="{{ old('designation', $user->designation) }}">
+                           @error('designation')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                 </div>
                 <button type="submit"
                         class="btn btn-primary">
