@@ -94,6 +94,20 @@
                 </div>
             @endif
         </div>
+        @if (auth()->user()->id === 1)
+        <div class="small-box text-bg-warning p-20 rounded-3 shadow-sm position-relative overflow-hidden mb-4 animate__animated animate__fadeIn">
+            <div class="inner pb-2">
+                <div class="small-box-icon position-absolute end-0 top-0 m-3 opacity-25">
+                    <i class="fas fa-user-shield fa-4x text-white"></i>
+                </div>
+            <div class="mt-4 pt-1">
+                <a href="{{ route('users.index') }}" class="btn btn-light btn-sm fw-bold px-3 text-warning shadow-sm rounded-2">
+                    <i class="fas fa-eye me-1"></i> View All Users
+                </a>
+            </div>
+            </div>
+        </div>
+        @endif
     @endauth
 
     @guest
@@ -115,18 +129,6 @@
             </div>
         </div>
     @endguest
-        <div class="small-box text-bg-warning p-20 rounded-3 shadow-sm position-relative overflow-hidden mb-4 animate__animated animate__fadeIn">
-            <div class="inner pb-2">
-                <div class="small-box-icon position-absolute end-0 top-0 m-3 opacity-25">
-                    <i class="fas fa-user-shield fa-4x text-white"></i>
-                </div>
-            <div class="mt-4 pt-1">
-                <a href="{{ route('users.index') }}" class="btn btn-light btn-sm fw-bold px-3 text-warning shadow-sm rounded-2">
-                    <i class="fas fa-eye me-1"></i> View All Users
-                </a>
-            </div>
-        </div>
-</div>
 @endsection
 
 
