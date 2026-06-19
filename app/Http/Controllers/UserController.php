@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -46,18 +47,10 @@ class UserController extends Controller
         return view('users-edit', compact('user'));
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, $id)
     {
         $user = User::findOrFail($id);
-
-        $user->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone_number' => $request->phone_number,
-            'age' => $request->age,
-            'department' => $request->department,
-            'designation' => $request->designation,
-        ]);
+        $user->update($request->validated());
 
         return redirect()
             ->route('users.index')
