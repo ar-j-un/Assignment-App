@@ -6,12 +6,14 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Gate;
 use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller
 {
     public function index(Request $request)
     {
+        Gate::authorize('admin');
         if ($request->ajax()) {
             $users = User::query();
 
@@ -33,15 +35,9 @@ class UserController extends Controller
         return view('users');
     }
 
-    /**
-     * Function: edit
-     * Description: Edit User
-     *
-     * @param  int  $id
-     * @return void
-     */
     public function edit($id)
     {
+        Gate::authorize('admin');
         $user = User::findOrFail($id);
 
         return view('users-edit', compact('user'));
@@ -49,6 +45,7 @@ class UserController extends Controller
 
     public function update(UpdateUserRequest $request, $id)
     {
+        Gate::authorize('admin');
         $user = User::findOrFail($id);
         $user->update($request->validated());
 
@@ -57,15 +54,9 @@ class UserController extends Controller
             ->with('success', 'User updated successfully.');
     }
 
-    /**
-     * Function: destroy
-     * Description: Delete User
-     *
-     * @param  int  $id
-     * @return void
-     */
     public function destroy($id)
     {
+        Gate::authorize('admin');
         $user = User::findOrFail($id);
         if ($user) {
             $user->delete();
