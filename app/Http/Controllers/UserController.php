@@ -42,7 +42,26 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        dd($user);
+
+        return view('users-edit', compact('user'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone_number' => $request->phone_number,
+            'age' => $request->age,
+            'department' => $request->department,
+            'designation' => $request->designation,
+        ]);
+
+        return redirect()
+            ->route('users.index')
+            ->with('success', 'User updated successfully.');
     }
 
     /**
