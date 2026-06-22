@@ -73,7 +73,14 @@
                     </div>
                 @endif
             </div>
-
+        </div>
+        <div class="mt-5 p-4 border-start border-2 rounded">
+            <h5 class="fw-medium mb-2">
+                user email
+            </h5>
+            <p class="mb-0 text-dark">
+                    comment
+            </p>
         </div>
     </div>
 </div>
