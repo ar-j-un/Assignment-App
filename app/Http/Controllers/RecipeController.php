@@ -123,6 +123,8 @@ class RecipeController extends Controller
             'success' => true,
             'message' => 'Recipe deleted successfully.',
         ]);
+    }
+
     public function comments(Recipe $recipe)
     {
         if ($recipe->user_id !== auth()->id()) {
