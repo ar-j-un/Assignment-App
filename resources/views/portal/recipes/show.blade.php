@@ -83,8 +83,70 @@
                     </div>
                 @endif
             </div>
-
+        </div>
+        <div class="mt-5 p-4 border-start border-2 rounded">
+            <h5 class="fw-medium mb-2">
+                Comments
+            </h5>
+            <div id="comments">
+                Loading comments...
+            </div>
         </div>
     </div>
 </div>
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', async function () {
+
+    const commentsContainer = document.getElementById('comments');
+
+    try {
+
+        const response = await fetch(
+            "{{ route('recipes.comments', $recipe) }}"
+        );
+
+        const comments = await response.json();
+
+        if (!comments.length) {
+            commentsContainer.innerHTML =
+                '<p class="text-muted">No comments found.</p>';
+            return;
+        }
+
+        let html = '';
+
+        comments.forEach(comment => {
+
+            html += `
+                <div class="card mb-3 border-0 shadow-sm">
+                    <div class="card-body">
+                        <h6 class="fw-bold mb-1">
+                            ${comment.email}
+                        </h6>
+
+                        <small class="text-muted">
+                            ${comment.name}
+                        </small>
+
+                        <p class="mt-2 mb-0">
+                            ${comment.body}
+                        </p>
+                    </div>
+                </div>
+            `;
+        });
+
+        commentsContainer.innerHTML = html;
+
+    } catch (error) {
+
+        console.error(error);
+
+        commentsContainer.innerHTML =
+            '<p class="text-danger">Failed to load comments.</p>';
+    }
+});
+</script>
+@endpush
 @endsection

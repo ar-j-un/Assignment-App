@@ -9,6 +9,7 @@ use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
@@ -122,5 +123,19 @@ class RecipeController extends Controller
             'success' => true,
             'message' => 'Recipe deleted successfully.',
         ]);
+    public function comments(Recipe $recipe)
+    {
+        if ($recipe->user_id !== auth()->id()) {
+            abort(403);
+        }
+
+        $comments = Http::get(
+            'https://jsonplaceholder.typicode.com/comments',
+            [
+                'postId' => $recipe->id,
+            ]
+        )->json();
+
+        return response()->json($comments);
     }
 }
