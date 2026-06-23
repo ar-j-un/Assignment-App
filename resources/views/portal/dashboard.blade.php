@@ -94,6 +94,7 @@
                 </div>
             @endif
         </div>
+        <div id="admin-welcome"></div>
     @endauth
 
     @guest
@@ -115,8 +116,24 @@
             </div>
         </div>
     @endguest
-
 </div>
+@push('scripts')
+<script>
+console.log('Script loaded');
+fetch('/api/welcome')
+    .then(response => response.json())
+    .then(data => {
+      let html = `
+            <div>
+                <h3>${data.message}</h3>
+                <h3>${data.data}</h3>
+            </div>
+        `;
+    document.getElementById('admin-welcome').innerHTML = html;
+    })
+    .catch(error => console.error(error));
+</script>
+@endpush
 @endsection
 
 
