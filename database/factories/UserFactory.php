@@ -29,12 +29,13 @@ class UserFactory extends Factory
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
+            'profile_image_path' => fake()->boolean(40) ? 'profile-images/'.fake()->uuid().'.jpg' : null,
+            'phone_number' => fake()->unique()->numberBetween(100000000, 999999999),
+            'age' => fake()->numberBetween(18, 65),
+            'department' => fake()->randomElement(['HR', 'IT', 'Sales', 'Marketing']),
+            'designation' => fake()->randomElement(['Manager', 'Developer', 'Analyst', 'Intern']),
             'remember_token' => Str::random(10),
-            'two_factor_secret' => null,
-            'two_factor_recovery_codes' => null,
-            'two_factor_confirmed_at' => null,
         ];
     }
 
