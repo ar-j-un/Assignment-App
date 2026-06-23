@@ -22,3 +22,5 @@ Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.up
 Route::resource('recipes', RecipeController::class)
     ->only(['index', 'create', 'store', 'show'])
     ->middleware('auth');
+
+Route::get('/recipes/{recipe}/comments', [RecipeController::class, 'comments'])->name('recipes.comments')->middleware('auth');
