@@ -41,6 +41,15 @@
                     <a href="{{ route('recipes.show', $recipe) }}" class="btn btn-outline-primary btn-sm fw-bold mt-3 stretched-link">
                         View Recipe <i class="fas fa-arrow-right ms-1"></i>
                     </a>
+
+                    <button
+                        type="button"
+                        class="delete-recipe btn btn-danger btn-sm fw-bold mt-3 position-relative"
+                        data-recipe-id="{{ $recipe->id }}"
+                        style="z-index: 2;"
+                    >
+                        Delete Recipe <i class="fas fa-trash me-1 px-2"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -57,5 +66,28 @@
         </div>
     @endforelse
 </div>
-
+@push('scripts')
+<script>
+$(document).on('click', '.delete-recipe', function () {
+    if (!confirm('Delete this recipe?')) {
+        return;
+    }
+    const recipeId = $(this).data('recipe-id');
+    const url = "{{ route('recipes.destroy', ':id') }}".replace(':id', recipeId);
+    $.ajax({
+        url: url,
+        type: 'DELETE',
+        data: {
+            _token: '{{ csrf_token() }}'
+        },
+        success: function (response) {
+                $(`#recipe-card-${recipeId}`).remove();
+        },
+        error: function () {
+            alert('Failed to delete recipe.');
+        }
+    });
+});
+</script>
+@endpush
 @endsection

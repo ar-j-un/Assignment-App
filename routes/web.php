@@ -25,8 +25,5 @@ Route::get('/users/edit/{id}', [UserController::class, 'edit'])->name('users.edi
 Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update')->can('admin');
 Route::delete('/users/delete/{id}', [UserController::class, 'destroy'])->name('users.destroy')->can('admin');
 
-Route::resource('recipes', RecipeController::class)
-    ->only(['index', 'create', 'store', 'show'])
-    ->middleware('auth');
-
+Route::resource('recipes', RecipeController::class)->middleware('auth');
 Route::get('/recipes/{recipe}/comments', [RecipeController::class, 'comments'])->name('recipes.comments')->middleware('auth');

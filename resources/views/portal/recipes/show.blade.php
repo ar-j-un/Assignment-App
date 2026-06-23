@@ -3,10 +3,20 @@
 @section('title', $recipe->recipe_name)
 
 @section('content')
-<div class="mb-3">
-    <a href="{{ route('recipes.index') }}" class="text-decoration-none text-muted fw-bold">
-        <i class="fas fa-arrow-left me-1"></i> Back to My Recipes
-    </a>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+        <a href="{{ route('recipes.index') }}" class="text-decoration-none text-muted fw-bold">
+            <i class="fas fa-arrow-left me-1"></i> Back to My Recipes
+        </a>
+    </div>
+    <div class="d-flex gap-2">
+        <a href="{{ route('recipes.edit', $recipe) }}" class="btn btn-primary">
+            <i class="fas fa-edit me-1"></i> Edit
+        </a>
+        <button type="submit" class="btn btn-danger">
+                <i class="fas fa-trash me-1"></i> Delete
+        </button>
+    </div>
 </div>
 
 <div class="card shadow-sm border-0 rounded-4 overflow-hidden mb-5">
@@ -56,7 +66,7 @@
 
             <div class="col-md-8 ps-md-4">
                 <h4 class="fw-bold text-primary mb-3 pb-2 border-bottom">
-                    <i class="fas fa-list-ol me-2"></i> Instructions
+                    <i class="fas fa-list-ol me-2"></i> Steps
                 </h4>
                 <div class="text-dark fs-5 mb-4" style="line-height: 1.8;">
                     {!! nl2br(e($recipe->steps)) !!}
