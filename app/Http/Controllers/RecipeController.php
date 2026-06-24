@@ -88,12 +88,9 @@ class RecipeController extends Controller
             $validated['ingredients'] = array_filter(array_map('trim', explode(',', $validated['ingredients']))
             );
             if ($request->hasFile('recipe_image')) {
-                $newImagePath = $request->file('recipe_image')->store('recipe_images', 'public');
+                $newImagePath =  $this->imageService->upload($request->file('recipe_image'));
                 $validated['recipe_image_path'] = $newImagePath;
-                if ($recipe->recipe_image_path &&
-                    Storage::disk('public')->exists($recipe->recipe_image_path)) {
-                    Storage::disk('public')->delete($recipe->recipe_image_path);
-                }
+                $this->imageService->delete($recipe->recipe_image_path);
             }
             unset($validated['recipe_image']);
             $recipe->update($validated);
@@ -103,9 +100,8 @@ class RecipeController extends Controller
                 ->with('success', 'Recipe updated successfully!');
         } catch (Exception $err) {
             Log::error('Recipe Update Failed: '.$err->getMessage());
-            if (isset($newImagePath) &&
-                Storage::disk('public')->exists($newImagePath)) {
-                Storage::disk('public')->delete($newImagePath);
+            if (isset($newImagePath)) {
+                $this->imageService->delete($newImagePath);
             }
 
             return redirect()
