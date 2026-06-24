@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\View\View;
 
 class RecipeController extends Controller
@@ -58,9 +59,7 @@ class RecipeController extends Controller
 
     public function show(Recipe $recipe): View
     {
-        if ($recipe->user_id !== auth()->id()) {
-            abort(403, 'You are not authorized to view this recipe.');
-        }
+        Gate::authorize('view', $recipe);
 
         return view('portal.recipes.show', [
             'recipe' => $recipe,
@@ -69,9 +68,7 @@ class RecipeController extends Controller
 
     public function edit(Recipe $recipe): View
     {
-        if ($recipe->user_id !== auth()->id()) {
-            abort(403, 'You are not authorized to view this recipe.');
-        }
+        Gate::authorize('update', $recipe);
 
         return view('portal.recipes.edit', [
             'recipe' => $recipe,
@@ -114,9 +111,7 @@ class RecipeController extends Controller
 
     public function destroy(Recipe $recipe): JsonResponse
     {
-        if ($recipe->user_id !== auth()->id()) {
-            abort(403, 'You are not authorized to view this recipe.');
-        }
+        Gate::authorize('delete', $recipe);
         $recipe->delete();
 
         return response()->json([
