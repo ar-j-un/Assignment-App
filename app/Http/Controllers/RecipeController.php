@@ -82,6 +82,7 @@ class RecipeController extends Controller
 
     public function update(UpdateRecipeRequest $request, Recipe $recipe): RedirectResponse
     {
+        Gate::authorize('update', $recipe);
         $validated = $request->validated();
         try {
             $validated['ingredients'] = array_filter(array_map('trim', explode(',', $validated['ingredients']))
