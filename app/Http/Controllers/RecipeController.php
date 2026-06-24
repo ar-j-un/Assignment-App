@@ -10,6 +10,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Services\ImageService;
+use App\Services\CommentService;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -19,7 +20,8 @@ use Illuminate\View\View;
 class RecipeController extends Controller
 {
     public function __construct(
-        private ImageService $imageService
+        private ImageService $imageService,
+        private CommentService $commentService
     ) {}
     
     public function create(): View
@@ -124,17 +126,8 @@ class RecipeController extends Controller
 
     public function comments(Recipe $recipe)
     {
-        if ($recipe->user_id !== auth()->id()) {
-            abort(403);
-        }
+        Gate::authorize('view', $recipe);
 
-        $comments = Http::get(
-            'https://jsonplaceholder.typicode.com/comments',
-            [
-                'postId' => $recipe->id,
-            ]
-        )->json();
-
-        return response()->json($comments);
+        return response()->json($this->commentService->getComments($recipe));
     }
 }
